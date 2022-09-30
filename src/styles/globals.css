@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-zinc-900 text-zinc-300;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  input[type="email"],
+  select {
+    @apply bg-zinc-700;
+  }
+}
+
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.button {
+  @apply px-5 py-3;
+}

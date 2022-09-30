@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.text annotations in model Account below
+    // Further reading: 
+    // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
+    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id            String     @id @default(cuid())
+    username      String     @unique
+    first_name    String
+    last_name     String
+    password_hash String
+    email         String     @unique
+    phone         String     @unique
+    balance       Float      @default(50)
+    referrer      String?
+    deposits      Deposit[]
+    withdraws     Withdraw[]
+    current_pack  String?
+    started_at    DateTime?
+    valid_till    DateTime?
+    works         Work[]
+    is_admin      Boolean    @default(false)
+    is_banned     Boolean    @default(false)
+    updatedAt     DateTime?  @updatedAt
+}
+
+model Deposit {
+    id        String        @id @default(cuid())
+    user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+    amount    Float
+    method    DepositMethod
+    tnx_id    String        @unique
+    date      DateTime
+    pending   Boolean       @default(true)
+    approved  Boolean       @default(false)
+    userId    String
+    updatedAt DateTime?     @updatedAt
+}
+
+model Withdraw {
+    id            String        @id @default(cuid())
+    user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId        String
+    amount        Float
+    fees          Float
+    mobile_number String
+    method        DepositMethod
+    date          DateTime
+    pending       Boolean       @default(true)
+    approved      Boolean       @default(false)
+    updatedAt     DateTime?     @updatedAt
+}
+
+enum DepositMethod {
+    bkash
+    nagad
+    upay
+    referral
+}
+
+model Work {
+    id     String   @id @default(cuid())
+    user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId String
+    date   DateTime
+}
+
+model Settings {
+    id                 String  @id @default(cuid())
+    bkash              String  @default("+8801700000000")
+    nagad              String  @default("+8801700000000")
+    upay               String  @default("+8801700000000")
+    whatsapp_number    String  @default("+8801642442091")
+    telegram_link      String  @default("https://t.me/+wR65AULzIFQyZTg9")
+    registration_bonus Float   @default(50)
+    referral_commision Float   @default(3)
+    bkash_percentage   Float   @default(2)
+    cashout_enabled    Boolean @default(true)
+    cashout_notice     String? @default("Withdraw is disabled. Please try again after some time")
+    app_download_link  String? @default("https://google.com")
+}
+
+model Packages {
+    id          String @id @unique @default(cuid())
+    name        String
+    price       Float
+    daily_limit Int
+    per_click   Float
+    validity    Int
+}
+
+model Ads {
+    videoId String @id @unique
+}
