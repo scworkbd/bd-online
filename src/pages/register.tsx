@@ -1,66 +1,66 @@
-import React, { useState } from "react";
-import type { NextPage } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
-import { trpc } from "../utils/trpc";
-import { useRouter } from "next/router";
-import { BiLoaderAlt } from "react-icons/bi";
-import CustomToast from "../components/CustomToast";
+import React, { useState } from "react"
+import type { NextPage } from "next"
+import Image from "next/image"
+import Link from "next/link"
+import { useForm } from "react-hook-form"
+import { toast } from "react-hot-toast"
+import { trpc } from "../utils/trpc"
+import { useRouter } from "next/router"
+import { BiLoaderAlt } from "react-icons/bi"
+import CustomToast from "../components/CustomToast"
 
 type Credentials = {
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  username: string;
-  password_hash: string;
-  password_hash_again: string;
-  referrer?: string;
-};
+  first_name: string
+  last_name: string
+  email: string
+  phone: string
+  username: string
+  password_hash: string
+  password_hash_again: string
+  referrer?: string
+}
 
 const Login: NextPage = () => {
-  const router = useRouter();
-  const refUser = router.query.ref;
-  const [loading, setLoading] = useState(false);
+  const router = useRouter()
+  const refUser = router.query.ref
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
     getValues,
     handleSubmit,
     formState: { errors },
-  } = useForm<Credentials>();
+  } = useForm<Credentials>()
 
   const { mutate } = trpc.useMutation(["user.register"], {
     onError: () => {
       toast.custom(
         <CustomToast message="রেজিস্ট্রেশন সফল হয়নি, আবার চেষ্টা করুণ" />
-      );
-      setLoading(false);
+      )
+      setLoading(false)
     },
     onSuccess: () => {
-      setLoading(false);
+      setLoading(false)
       toast.custom(
         <CustomToast success message="রেজিস্ট্রেশন সফল হয়েছে। লগিন করুণ" />
-      );
-      router.push("/login");
+      )
+      router.push("/login")
     },
-  });
+  })
 
   const registerUser = (values: Credentials) => {
-    setLoading(true);
+    setLoading(true)
     mutate({
       registerData: {
         ...values,
         referrer: refUser ? (refUser as string) : undefined,
       },
-    });
-  };
+    })
+  }
 
   return (
     <div>
-      <div className="max-w-lg mx-auto py-20 p-5">
+      <div className="max-w-[400px] mx-auto py-20 p-5">
         <div className="flex flex-col items-center justify-center">
           <Image src="/logo.png" width={200} height={80} alt="logo" />
           <p>ফর্ম টি পূরন করুণ</p>
@@ -159,8 +159,8 @@ const Login: NextPage = () => {
                 } rounded-full`}
                 {...register("password_hash_again", {
                   validate: (value: string) => {
-                    const values = getValues();
-                    return values.password_hash === value;
+                    const values = getValues()
+                    return values.password_hash === value
                   },
                 })}
               />
@@ -183,7 +183,7 @@ const Login: NextPage = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

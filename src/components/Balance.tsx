@@ -14,7 +14,7 @@ const Balance = () => {
   ])
 
   return (
-    <div className="p-2 mt-5">
+    <div>
       <div className="p-3 bg-green-500 shadow-md flex gap-4 items-center">
         <div className="w-14 h-14">
           <Image

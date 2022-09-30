@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from "react";
-import type { NextPage } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
-import { BiLoaderAlt, BiLockAlt, BiUser } from "react-icons/bi";
-import CustomToast from "../components/CustomToast";
+import React, { useEffect, useState } from "react"
+import type { NextPage } from "next"
+import Image from "next/image"
+import Link from "next/link"
+import { useForm } from "react-hook-form"
+import { toast } from "react-hot-toast"
+import { signIn } from "next-auth/react"
+import { useRouter } from "next/router"
+import { BiLoaderAlt, BiLockAlt, BiUser } from "react-icons/bi"
+import CustomToast from "../components/CustomToast"
 
 type Credentials = {
-  username: string;
-  password: string;
-};
+  username: string
+  password: string
+}
 
 const Login: NextPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Credentials>();
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  } = useForm<Credentials>()
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
 
-  const error = router.query.error;
+  const error = router.query.error
 
   const login = (values: Credentials) => {
-    setLoading(true);
+    setLoading(true)
     fetch("/api/user/authenticate", {
       method: "POST",
       headers: {
@@ -37,27 +37,27 @@ const Login: NextPage = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
-          toast.custom(<CustomToast message="ভুল ইউজারনেম অথবা পাসওয়ার্ড" />);
-          setLoading(false);
+          toast.custom(<CustomToast message="ভুল ইউজারনেম অথবা পাসওয়ার্ড" />)
+          setLoading(false)
         } else {
-          setLoading(true);
-          signIn("credentials", { ...values, callbackUrl: "/user/dashboard" });
+          setLoading(true)
+          signIn("credentials", { ...values, callbackUrl: "/user/dashboard" })
         }
       })
       .catch(() => {
-        setLoading(true);
-      });
-  };
+        setLoading(true)
+      })
+  }
 
   useEffect(() => {
     if (error) {
-      toast.error(error as string);
+      toast.error(error as string)
     }
-  }, [error]);
+  }, [error])
 
   return (
     <div>
-      <div className="max-w-lg mx-auto py-20 p-5">
+      <div className="max-w-[400px] mx-auto py-20 p-5">
         <div className="flex flex-col items-center justify-center">
           <Image src="/logo.png" width={200} height={80} alt="logo" />
           <p>স্বাগতম</p>
@@ -119,7 +119,7 @@ const Login: NextPage = () => {
         <div className="flex flex-col mt-10 text-indigo-600"></div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

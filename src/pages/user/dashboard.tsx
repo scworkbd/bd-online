@@ -1,18 +1,21 @@
 import React from "react"
+import Link from "next/link"
+
 import type { NextPage } from "next"
-import DashPage from "../../components/DashPage"
-import Balance from "../../components/Balance"
+
 import { useDeposit } from "../../hooks/useDeposits"
-import { BsFillClockFill, BsTelegram, BsWhatsapp } from "react-icons/bs"
 import { useWithdraw } from "../../hooks/useWithdraw"
 import { useAccount } from "../../hooks/useAccount"
-import moment from "moment"
 import { useRouter } from "next/router"
-import { trpc } from "../../utils/trpc"
-import Link from "next/link"
-import { BiKey, BiUser } from "react-icons/bi"
-import { SiGoogleplay } from "react-icons/si"
 import { useSettings } from "../../hooks/useSettings"
+
+import Balance from "../../components/Balance"
+import DashPage from "../../components/DashPage"
+
+import { HiOutlineCash, HiCash, HiUserGroup, HiUser } from "react-icons/hi"
+import { BiNetworkChart, BiBroadcast, BiBox, BiCommand } from "react-icons/bi"
+
+import { trpc } from "../../utils/trpc"
 
 const Dashboard: NextPage = () => {
   const { data: account } = useAccount()
@@ -50,146 +53,74 @@ const Dashboard: NextPage = () => {
     <DashPage>
       <Balance />
       <div className="p-5 mt-5">
-        <h1 className="text-2xl font-bold mb-5">Other Links</h1>
-        <div className="grid grid-cols-5 gap-3 text-center">
-          <Link href="/user/chpwd">
-            <a className="flex flex-col gap-2 items-center ">
-              <div className="w-12 h-12 bg-zinc-700 grid place-items-center rounded-full">
-                <BiKey className="text-2xl" />
+        <div className="grid grid-cols-4 gap-4">
+          <Link href="/user/deposit">
+            <div className="aspect-square rounded-full bg-green-500/20 grid place-items-center">
+              <div className=" flex flex-col items-center">
+                <HiOutlineCash className="tp:text-3xl text-green-500" />
+                <p className="text-xs hidden tp:block">Deposit</p>
               </div>
-              <span className="text-xs">Change Password</span>
-            </a>
+            </div>
+          </Link>
+
+          <Link href="/user/withdraw">
+            <div className="aspect-square rounded-full bg-green-500/20 grid place-items-center">
+              <div className=" flex flex-col items-center">
+                <HiCash className="text-xl tp:text-3xl text-green-500" />
+                <p className="text-xs hidden tp:block">Withdraw</p>
+              </div>
+            </div>
           </Link>
 
           <Link href="/user/referral">
-            <a className="flex flex-col gap-2 items-center ">
-              <div className="w-12 h-12 bg-zinc-700 grid place-items-center rounded-full">
-                <BiUser className="text-2xl" />
+            <div className="aspect-square rounded-full bg-green-500/20 grid place-items-center">
+              <div className=" flex flex-col items-center">
+                <HiUserGroup className="tp:text-3xl text-green-500" />
+                <p className="text-xs hidden tp:block">Refer</p>
               </div>
-              <span className="text-xs">Referral</span>
-            </a>
+            </div>
           </Link>
 
-          <a
-            href={`https://wa.me/${settings?.whatsapp_number}`}
-            className="flex flex-col gap-2 items-center "
-          >
-            <div className="w-12 h-12 bg-zinc-700 grid place-items-center rounded-full">
-              <BsWhatsapp className="text-2xl" />
-            </div>
-            <span className="text-xs">Whatsapp</span>
-          </a>
-
-          <a
-            href={`${settings?.telegram_link}`}
-            className="flex flex-col gap-2 items-center "
-          >
-            <div className="w-12 h-12 bg-zinc-700 grid place-items-center rounded-full">
-              <BsTelegram className="text-2xl" />
-            </div>
-            <span className="text-xs">Telegram Group</span>
-          </a>
-
-          {settings?.app_download_link && (
-            <a
-              href="/DreamProject.apk"
-              className="flex flex-col gap-2 items-center "
-            >
-              <div className="w-12 h-12 bg-zinc-700 grid place-items-center rounded-full">
-                <SiGoogleplay className="text-2xl" />
+          <Link href="/user/profile">
+            <div className="aspect-square rounded-full bg-green-500/20 grid place-items-center">
+              <div className=" flex flex-col items-center">
+                <HiUser className="tp:text-3xl text-green-500" />
+                <p className="text-xs hidden tp:block">Profile</p>
               </div>
-              <span className="text-xs">Download App</span>
-            </a>
-          )}
+            </div>
+          </Link>
         </div>
       </div>
 
-      <section className="mt-5 p-5">
+      <div className="mt-5 p-5">
         <div className="grid grid-cols-2 gap-5">
-          <div className="p-5 bg-black rounded-md shadow-md flex flex-col gap-1">
-            <span>Total Work</span>
-            <span className="text-xl font-bold">
-              {pack ? pack.daily_limit * pack.validity : 0}
-            </span>
+          <div className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20">
+            <BiBox className="text-7xl text-green-500/30 absolute -bottom-3 -right-3 -rotate-45" />
+            <h2 className="text-xl font-bold text-green-700 mb-3">প্যাকেজ</h2>
+            <p className="font-bold text-green-500 text-sm">
+              {pack ? pack.name : "প্যাকেজ কিনতে এখানে ক্লিক করুণ"}
+            </p>
           </div>
 
-          <div
-            className="p-5 bg-green-600 rounded-md shadow-md flex flex-col gap-1"
-            onClick={() => router.push("/user/withdraw/history")}
-          >
-            <span>Withdraws</span>
-            <span className="text-2xl font-bold">
-              {totalWithdraw.toFixed(2)}
-            </span>
-            <span className="font-bold text-sm flex items-center gap-2">
-              {pendingWithdraw > 0 && (
-                <>
-                  <span>
-                    <BsFillClockFill />
-                  </span>
-                  <span className="text-white">
-                    {pendingWithdraw.toFixed(2)}
-                  </span>
-                </>
-              )}
-            </span>
+          <div className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20">
+            <BiBroadcast className="text-7xl text-green-500/30 absolute -bottom-3 -right-3 -rotate-45" />
+            <h2 className="text-xl font-bold text-green-700 mb-3">কাজ বাকি</h2>
+            <p className="font-bold text-xl text-green-500">{works || 0}</p>
           </div>
 
-          <div className="p-5 bg-black rounded-md shadow-md flex flex-col gap-1">
-            <span>Todays Work</span>
-            <span className="text-xl font-bold">
-              {works ? works : 0}/{pack?.daily_limit || 0}
-            </span>
+          <div className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20">
+            <HiCash className="text-7xl text-green-500/30 absolute -bottom-3 -right-3 -rotate-45" />
+            <h2 className="text-xl font-bold text-green-700 mb-3">ক্যাশ আউট</h2>
+            <p className="font-bold text-xl text-green-500">{totalWithdraw}</p>
           </div>
 
-          <div
-            className="p-5 bg-red-500 rounded-md shadow-md flex flex-col gap-1"
-            onClick={() => router.push("/user/deposit/history")}
-          >
-            <span>Deposits</span>
-            <span className="text-2xl font-bold">
-              {totalDeposit.toFixed(2)}
-            </span>
-            <span className="font-bold text-sm flex items-center gap-2">
-              {pendingDeposit > 0 && (
-                <>
-                  <span>
-                    <BsFillClockFill />
-                  </span>
-                  <span className="text-white">
-                    {pendingDeposit.toFixed(2)}
-                  </span>
-                </>
-              )}
-            </span>
+          <div className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20">
+            <HiOutlineCash className="text-7xl text-green-500/30 absolute -bottom-3 -right-3 -rotate-45" />
+            <h2 className="text-xl font-bold text-green-700 mb-3">ডিপোজিট</h2>
+            <p className="font-bold text-xl text-green-500">{totalWithdraw}</p>
           </div>
-
-          <div
-            className={`p-5 bg-black rounded-md shadow-md flex flex-col gap-2 ${
-              account?.current_pack && "col-span-2"
-            }`}
-          >
-            <span>Package Name</span>
-            <span className="text-xl font-bold">
-              {pack ? pack.name : "No Package"}
-            </span>
-            {account?.current_pack && (
-              <span className="text-zinc-600">
-                Expire at - {moment(account?.valid_till).format("DD MMM, YYYY")}
-              </span>
-            )}
-          </div>
-          {!account?.current_pack && (
-            <div
-              onClick={() => router.push("/user/package")}
-              className="p-5 bg-black rounded-md shadow-md flex flex-col gap-3"
-            >
-              <span>Activate Account</span>
-              <span className="text-xl font-bold">Click Here</span>
-            </div>
-          )}
         </div>
-      </section>
+      </div>
     </DashPage>
   )
 }
