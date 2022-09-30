@@ -1,10 +1,8 @@
 import React from "react"
-import Link from "next/link"
-import { BiPlus, BiUser } from "react-icons/bi"
 import { trpc } from "../utils/trpc"
 
 import { useSession } from "next-auth/react"
-import { AiOutlineArrowUp } from "react-icons/ai"
+import Image from "next/image"
 
 const Balance = () => {
   const { data: session } = useSession()
@@ -16,38 +14,24 @@ const Balance = () => {
   ])
 
   return (
-    <div className="px-5 bg-zinc-700 py-10">
-      <div className="text-3xl font-bold flex items-center justify-between border-b-2 pb-5 border-b-zinc-500">
-        <span>{user ? user.balance.toFixed(2) : "..."}</span>
-        <span className="text-zinc-400">BDT</span>
-      </div>
-
-      <div className="max-w-xs mx-auto flex justify-between gap-2 pt-10">
-        <div className="flex flex-col items-center gap-2">
-          <Link href="/user/deposit">
-            <a className="text-2xl w-10 h-10 grid place-items-center bg-green-600 rounded-full ">
-              <BiPlus />
-            </a>
-          </Link>
-          <span className="text-sm">Deposit</span>
+    <div className="p-2 mt-5">
+      <div className="p-3 bg-green-500 shadow-md flex gap-4 items-center">
+        <div className="w-14 h-14">
+          <Image
+            src={`https://avatars.dicebear.com/api/pixel-art/${user?.username}.svg`}
+            width={50}
+            height={50}
+            layout="responsive"
+          />
         </div>
-
-        <div className="flex flex-col items-center gap-2">
-          <Link href="/user/withdraw">
-            <a className="text-xl w-10 h-10 grid place-items-center bg-red-600 rounded-full ">
-              <AiOutlineArrowUp />
-            </a>
-          </Link>
-          <span className="text-sm">Withdraw</span>
+        <div className="flex flex-col">
+          <p className="text-2xl font-bold">{user?.username}</p>
+          <p>{user?.phone}</p>
         </div>
-
-        <div className="flex flex-col items-center gap-2">
-          <Link href="/user/profile">
-            <a className="text-xl w-10 h-10 grid place-items-center bg-yellow-600 rounded-full ">
-              <BiUser />
-            </a>
-          </Link>
-          <span className="text-sm">Profile</span>
+        <div className="ml-auto">
+          <span className="px-5 py-2 bg-green-800 text-white rounded-full">
+            {user ? user.balance.toFixed(2) : "..."}
+          </span>
         </div>
       </div>
     </div>

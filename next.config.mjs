@@ -13,4 +13,7 @@ function defineNextConfig(config) {
 export default defineNextConfig({
   reactStrictMode: false,
   swcMinify: false,
+  images: {
+    domains: ['avatars.dicebear.com']
+  }
 })

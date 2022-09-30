@@ -6,13 +6,11 @@ import { useRouter } from "next/router"
 import {
   BiPackage,
   BiCalendarAlt,
-  BiLogIn,
   BiMenuAltLeft,
   BiGridAlt,
   BiX,
 } from "react-icons/bi"
-import { AiFillHome } from "react-icons/ai"
-import { signOut, signIn } from "next-auth/react"
+import { signIn } from "next-auth/react"
 
 import Loading from "./Loading"
 import { trpc } from "../utils/trpc"
@@ -69,7 +67,7 @@ const DashPage = ({ children }: Props) => {
 
   return (
     <div className="max-w-lg mx-auto">
-      <header className="h-14 px-5 fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg flex items-center gap-5 z-20 bg-white shadow-lg">
+      <header className="h-14 px-5 fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg flex items-center gap-5 z-20 bg-white shadow-md">
         <BiMenuAltLeft className="text-xl" onClick={() => setOpen(!open)} />
         <div className="flex items-center justify-center">
           <Link href="/user/dashboard">
