@@ -119,7 +119,7 @@ const Dashboard: NextPage = () => {
           <div className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20">
             <HiOutlineCash className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
             <h2 className="text-xl font-bold text-green-700 mb-3">ডিপোজিট</h2>
-            <p className="font-bold text-xl text-green-500">{totalWithdraw}</p>
+            <p className="font-bold text-xl text-green-500">{totalDeposit}</p>
           </div>
         </div>
       </div>
