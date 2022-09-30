@@ -95,7 +95,7 @@ const Dashboard: NextPage = () => {
       <div className="mt-5 p-5">
         <div className="grid grid-cols-2 gap-5">
           <div className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20">
-            <BiBox className="text-7xl text-green-500/30 absolute -bottom-3 -right-3 -rotate-45" />
+            <BiBox className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
             <h2 className="text-xl font-bold text-green-700 mb-3">প্যাকেজ</h2>
             <p className="font-bold text-green-500 text-sm">
               {pack ? pack.name : "প্যাকেজ কিনতে এখানে ক্লিক করুণ"}
@@ -103,19 +103,21 @@ const Dashboard: NextPage = () => {
           </div>
 
           <div className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20">
-            <BiBroadcast className="text-7xl text-green-500/30 absolute -bottom-3 -right-3 -rotate-45" />
+            <BiBroadcast className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
             <h2 className="text-xl font-bold text-green-700 mb-3">কাজ বাকি</h2>
-            <p className="font-bold text-xl text-green-500">{works || 0}</p>
+            <p className="font-bold text-xl text-green-500">
+              {works ? `${works}/${pack ? pack.daily_limit : 0}` : 0}
+            </p>
           </div>
 
           <div className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20">
-            <HiCash className="text-7xl text-green-500/30 absolute -bottom-3 -right-3 -rotate-45" />
+            <HiCash className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
             <h2 className="text-xl font-bold text-green-700 mb-3">ক্যাশ আউট</h2>
             <p className="font-bold text-xl text-green-500">{totalWithdraw}</p>
           </div>
 
           <div className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20">
-            <HiOutlineCash className="text-7xl text-green-500/30 absolute -bottom-3 -right-3 -rotate-45" />
+            <HiOutlineCash className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
             <h2 className="text-xl font-bold text-green-700 mb-3">ডিপোজিট</h2>
             <p className="font-bold text-xl text-green-500">{totalWithdraw}</p>
           </div>

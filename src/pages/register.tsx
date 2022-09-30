@@ -60,7 +60,7 @@ const Login: NextPage = () => {
 
   return (
     <div>
-      <div className="max-w-[400px] mx-auto py-20 p-5">
+      <div className="max-w-lg mx-auto py-20 p-5">
         <div className="flex flex-col items-center justify-center">
           <Image src="/logo.png" width={200} height={80} alt="logo" />
           <p>ফর্ম টি পূরন করুণ</p>
