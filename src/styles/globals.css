@@ -3,16 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-zinc-900 text-zinc-300;
-  }
-
   input[type="text"],
   input[type="password"],
   input[type="number"],
   input[type="email"],
   select {
-    @apply bg-zinc-700;
+    @apply bg-zinc-300 placeholder:text-zinc-500 px-5;
   }
 }
 
