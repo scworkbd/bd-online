@@ -3,13 +3,22 @@ import Link from "next/link"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/router"
 
-import { BiPackage, BiCalendarAlt, BiLogIn } from "react-icons/bi"
+import {
+  BiPackage,
+  BiCalendarAlt,
+  BiLogIn,
+  BiMenuAltLeft,
+  BiGridAlt,
+  BiX,
+} from "react-icons/bi"
 import { AiFillHome } from "react-icons/ai"
 import { signOut, signIn } from "next-auth/react"
 
 import Loading from "./Loading"
 import { trpc } from "../utils/trpc"
 import Image from "next/dist/client/image"
+import IconLink from "./IconLink"
+import { BsFillClockFill } from "react-icons/bs"
 
 type Props = {
   children?: React.ReactNode | React.ReactNode[]
@@ -23,6 +32,7 @@ const DashPage = ({ children }: Props) => {
     adminUsername: string
     adminPassword: string
   } | null>(null)
+  const [open, setOpen] = useState(false)
 
   const { data: profile, isLoading } = trpc.useQuery([
     "user.details",
@@ -49,7 +59,7 @@ const DashPage = ({ children }: Props) => {
 
   if (profile && profile.is_banned) {
     setTimeout(() => {
-      router.push("/login?error=Account+banned+please+contact+support")
+      router.push("/login?error=একাউন্ট ব্যান করা হয়েছে")
     }, 1000)
   }
 
@@ -59,14 +69,15 @@ const DashPage = ({ children }: Props) => {
 
   return (
     <div className="max-w-lg mx-auto">
-      <header className="h-14 px-5 fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg grid grid-cols-3 bg-zinc-800 z-20">
-        <div></div>
+      <header className="h-14 px-5 fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg flex items-center gap-5 z-20 bg-white shadow-lg">
+        <BiMenuAltLeft className="text-xl" onClick={() => setOpen(!open)} />
         <div className="flex items-center justify-center">
           <Link href="/user/dashboard">
             <Image src="/logo.png" width={100} height={30} alt="logo" />
           </Link>
         </div>
-        <div className="flex items-center justify-end">
+
+        <div className="flex items-center justify-end ml-auto">
           {adminData && (
             <button
               onClick={() => {
@@ -80,57 +91,51 @@ const DashPage = ({ children }: Props) => {
                   callbackUrl: "/admin/users",
                 })
               }}
-              className="px-5 py-2 bg-black text-zinc-400 rounded-md text-xs"
+              className="px-5 py-2 bg-black text-zinc-200 rounded-md text-xs"
             >
               Admin
             </button>
           )}
         </div>
       </header>
+
+      <aside
+        className={`w-full mx-auto h-screen fixed top-0 left-0  z-50 isolate transition-all ${
+          open
+            ? "bg-black/10 pointer-events-auto"
+            : "bg-transparent pointer-events-none"
+        }`}
+      >
+        <div
+          className={`w-full max-w-[250px] bg-black h-screen flex flex-col z-10 absolute top-0  transition-all ${
+            open ? "left-0" : "-left-[100%]"
+          }`}
+        >
+          <IconLink text="Dashboard" href="/user/dashboard" icon={BiGridAlt} />
+          <IconLink text="Package" href="/user/package" icon={BiPackage} />
+          <IconLink
+            text="Withdraw History"
+            href="/user/withdraw/history"
+            icon={BsFillClockFill}
+          />
+          <IconLink
+            text="Deposit History"
+            href="/user/deposit/history"
+            icon={BiCalendarAlt}
+          />
+        </div>
+
+        {open && (
+          <BiX
+            className="bg-red-500 text-white absolute top-2 right-2 text-3xl transition-all"
+            onClick={() => setOpen(!open)}
+          />
+        )}
+      </aside>
+
       <div className="pt-14 pb-36">
         <div>{children}</div>
       </div>
-
-      <footer className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-lg z-10">
-        <div className="py-5 px-10 bg-zinc-800 flex items-center justify-between">
-          <div className="flex items-center flex-col gap-1">
-            <Link href="/user/dashboard">
-              <div className="text-white text-xl">
-                <AiFillHome />
-              </div>
-            </Link>
-            <span className="text-sm">Home</span>
-          </div>
-
-          <div className="flex items-center flex-col gap-1">
-            <Link href="/user/package">
-              <div className="text-white text-xl">
-                <BiPackage />
-              </div>
-            </Link>
-            <span className="text-sm">Package</span>
-          </div>
-
-          <div className="flex items-center flex-col gap-1">
-            <Link href="/user/ptc">
-              <div className="text-white text-xl">
-                <BiCalendarAlt />
-              </div>
-            </Link>
-            <span className="text-sm">Work</span>
-          </div>
-
-          <div
-            className="flex items-center flex-col gap-1"
-            onClick={() => signOut()}
-          >
-            <div className="text-white text-xl">
-              <BiLogIn />
-            </div>
-            <span className="text-sm">Logout</span>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
