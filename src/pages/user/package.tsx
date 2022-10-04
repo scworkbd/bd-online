@@ -2,13 +2,12 @@ import React, { Fragment, useState } from "react"
 import DashPage from "../../components/DashPage"
 
 import { Dialog, Transition } from "@headlessui/react"
-import { BiLoaderAlt } from "react-icons/bi"
+import { BiCheck, BiLoaderAlt } from "react-icons/bi"
 import { trpc } from "../../utils/trpc"
 import { toast } from "react-hot-toast"
 import { useRouter } from "next/router"
 import { Packages } from "@prisma/client"
 import { useSettings } from "../../hooks/useSettings"
-import { BsCheck2Circle } from "react-icons/bs"
 import CustomToast from "../../components/CustomToast"
 
 const Package = () => {
@@ -56,19 +55,19 @@ const Package = () => {
 
             <ul className="mt-5">
               <li className="flex items-center gap-2">
-                <BsCheck2Circle className="text-green-500" /> প্রতিদিনের ভিডিওঃ{" "}
-                {pack.daily_limit} টি
+                <BiCheck className="text-green-500 text-2xl" /> প্রতিদিনের
+                ভিডিওঃ {pack.daily_limit} টি
               </li>
               <li className="flex items-center gap-2">
-                <BsCheck2Circle className="text-green-500" /> প্রতি ক্লিকঃ{" "}
+                <BiCheck className="text-green-500 text-2xl" /> প্রতি ক্লিকঃ{" "}
                 {pack.per_click} টাকা
               </li>
               <li className="flex items-center gap-2">
-                <BsCheck2Circle className="text-green-500" /> প্রতিদিনের ইনকামঃ{" "}
-                {pack.daily_limit * pack.per_click} BDT
+                <BiCheck className="text-green-500 text-2xl" /> প্রতিদিনের
+                ইনকামঃ {pack.daily_limit * pack.per_click} BDT
               </li>
               <li className="flex items-center gap-2">
-                <BsCheck2Circle className="text-green-500" /> রেফারেল কমিশনঃ{" "}
+                <BiCheck className="text-green-500 text-2xl" /> রেফারেল কমিশনঃ{" "}
                 {(
                   (pack.price / 100) *
                   (settings ? settings?.referral_commision : 0)
@@ -76,7 +75,7 @@ const Package = () => {
                 টাকা
               </li>
               <li className="flex items-center gap-2">
-                <BsCheck2Circle className="text-green-500" /> মেয়াদঃ{" "}
+                <BiCheck className="text-green-500 text-2xl" /> মেয়াদঃ{" "}
                 {pack.validity} দিন
               </li>
             </ul>

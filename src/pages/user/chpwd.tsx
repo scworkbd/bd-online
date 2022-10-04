@@ -4,6 +4,7 @@ import DashPage from "../../components/DashPage"
 import { trpc } from "../../utils/trpc"
 import { toast } from "react-hot-toast"
 import { BiLoaderAlt } from "react-icons/bi"
+import CustomToast from "../../components/CustomToast"
 
 type UserInput = {
   old_pass: string
@@ -22,11 +23,8 @@ const ChPWD = () => {
 
   const { mutate, isLoading } = trpc.useMutation(["user.updatePassword"], {
     onSuccess: () => {
-      toast.success("Password updated")
+      toast.custom(<CustomToast success message="পাসওয়ার্ড পরিবর্তন হয়েছে" />)
       reset()
-    },
-    onError: (error) => {
-      toast.error(error.message)
     },
   })
 

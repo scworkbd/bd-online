@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { toast } from "react-hot-toast"
 import { trpc } from "../utils/trpc"
 import { useRouter } from "next/router"
+import CustomToast from "./CustomToast"
 const Timer = () => {
   const adsDuration = 5
   const [remainingTime, setRemainingTime] = useState(adsDuration)
@@ -9,11 +10,11 @@ const Timer = () => {
 
   const { mutate } = trpc.useMutation(["user.work"], {
     onSuccess: () => {
-      toast.success("Ads দেখা সফল হয়েছে।")
+      toast.custom(<CustomToast success message="Ads দেখা সফল হয়েছে।" />)
       router.push("/user/ptc")
     },
     onError: (error) => {
-      toast.error(error.message)
+      toast.custom(<CustomToast message={error.message} />)
     },
   })
 

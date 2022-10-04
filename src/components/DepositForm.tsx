@@ -28,9 +28,6 @@ const DepositForm = ({ method }: Props) => {
       )
       reset()
     },
-    onError: (error) => {
-      toast.error(error.message)
-    },
   })
 
   const deposit = (values: DepositInput) => {

@@ -9,19 +9,19 @@ const History = () => {
   return (
     <DashPage hideFooter>
       <div className="p-5">
-        <h1 className="text-2xl font-bold text-center my-5">Referral Income</h1>
+        <h1 className="text-2xl font-bold my-5">রেফারেল ইনকাম</h1>
         <div className="w-full overflow-y-auto">
           <table className="max-w-full text-xs w-full">
             <thead>
-              <tr className="bg-black text-zinc-400 overflow-hidden">
-                <th className="text-left px-5 py-3">Amount</th>
-                <th className="text-left px-5 py-3">Time</th>
+              <tr className="bg-white overflow-hidden border-2">
+                <th className="text-left px-5 py-3">পরিমান</th>
+                <th className="text-left px-5 py-3">সময়</th>
               </tr>
             </thead>
 
             <tbody>
               {deposits?.map((withdraw) => (
-                <tr key={withdraw.id} className="odd:bg-zinc-800">
+                <tr key={withdraw.id} className="odd:bg-zinc-100">
                   <td className="text-left px-5 py-3">{withdraw.id}</td>
                   <td className="text-left px-5 py-3">{withdraw.amount}</td>
                   <td className="text-left px-5 py-3 whitespace-nowrap">

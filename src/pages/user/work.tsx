@@ -6,6 +6,7 @@ import DashPage from "../../components/DashPage"
 import Timer from "../../components/Timer"
 import { trpc } from "../../utils/trpc"
 import { toast } from "react-hot-toast"
+import CustomToast from "../../components/CustomToast"
 
 const Work = () => {
   const { data: works } = trpc.useQuery(["user.works"])
@@ -15,7 +16,7 @@ const Work = () => {
 
   useEffect(() => {
     if (works !== undefined && works <= 0) {
-      toast.error("Todays limit over. Try tomorrow")
+      toast.custom(<CustomToast message="আজকের লিমিট শেষ" />)
       router.push("/user/dashboard")
     }
   }, [works, router])

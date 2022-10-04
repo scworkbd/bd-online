@@ -15,15 +15,8 @@ type Credentials = {
 }
 
 const Login: NextPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Credentials>()
-  const router = useRouter()
+  const { register, handleSubmit } = useForm<Credentials>()
   const [loading, setLoading] = useState(false)
-
-  const error = router.query.error
 
   const login = (values: Credentials) => {
     setLoading(true)
@@ -48,12 +41,6 @@ const Login: NextPage = () => {
         setLoading(true)
       })
   }
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error as string)
-    }
-  }, [error])
 
   return (
     <div>

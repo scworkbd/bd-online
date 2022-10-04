@@ -10,6 +10,7 @@ import { trpc } from "../../../utils/trpc"
 import { useSettings } from "../../../hooks/useSettings"
 import { BiLoaderAlt } from "react-icons/bi"
 import { useRouter } from "next/router"
+import CustomToast from "../../../components/CustomToast"
 
 type Methods = "bkash" | "nagad" | "upay"
 
@@ -36,14 +37,13 @@ const Deposit: NextPage = () => {
   const { data: account, refetch } = useAccount()
   const { mutate, isLoading: wLoading } = trpc.useMutation(["user.withdraw"], {
     onSuccess: () => {
-      toast.success("উইথড্র সফল হয়েছে")
+      toast.custom(
+        <CustomToast success message="ক্যাশ আউট রিকুয়েস্ট পাঠানো হয়েছে।" />
+      )
       reset()
       refetch()
       setMethod(null)
       setWithData(undefined)
-    },
-    onError: (error) => {
-      toast.error(error.message)
     },
   })
 
@@ -75,11 +75,15 @@ const Deposit: NextPage = () => {
       amount < withDraws[method || "bkash"]?.min || //@ts-expect-error("can't be null")
       amount > withDraws[method || "bkash"]?.max
     ) {
-      return toast.error("Please enter valid amount")
+      return toast.custom(
+        <CustomToast message="সর্বনিম্ন ৫০০ টাকা থেকে ২৫,০০০ পর্যন্ত ক্যাশ আউট করা যাবে" />
+      )
     }
 
     if (amount > (account ? account?.balance : 0)) {
-      return toast.error("Not enough balance")
+      return toast.custom(
+        <CustomToast message="পর্যাপ্ত পরিমানে ব্যালেন্স নেই" />
+      )
     }
 
     if (amount && method && account && settings) {
@@ -109,7 +113,7 @@ const Deposit: NextPage = () => {
   useEffect(() => {
     if (account) {
       if (!account.current_pack) {
-        toast.error("Please activate your account")
+        toast.custom(<CustomToast message="একাউন্ট এক্টিভ নেই" />)
         router.push("/user/dashboard")
       }
     }
@@ -118,16 +122,12 @@ const Deposit: NextPage = () => {
   return (
     <DashPage hideFooter>
       <h1 className="text-2xl font-bold text-center mt-10 mb-5">
-        {settings?.cashout_enabled ? "Select Wallet" : settings?.cashout_notice}
+        {!settings?.cashout_enabled && <span>{settings?.cashout_notice}</span>}
       </h1>
       {settings?.cashout_enabled && (
-        <div className="grid grid-cols-6 gap-5">
-          <div></div>
-          <div
-            onClick={() => setMethod("bkash")}
-            className="text-center col-span-2"
-          >
-            <div className="bg-zinc-800 p-3 text-center">
+        <div className="grid grid-cols-1 gap-5">
+          <div onClick={() => setMethod("bkash")} className="text-center">
+            <div className="p-3 text-center">
               <Image
                 src="/icons/bkash.png"
                 width={100}
@@ -137,11 +137,8 @@ const Deposit: NextPage = () => {
             </div>
           </div>
 
-          <div
-            onClick={() => setMethod("nagad")}
-            className="text-center col-span-2"
-          >
-            <div className="bg-zinc-800 p-3 text-center">
+          <div onClick={() => setMethod("nagad")} className="text-center">
+            <div className="p-3 text-center">
               <Image
                 src="/icons/nagad.png"
                 width={100}
@@ -150,7 +147,6 @@ const Deposit: NextPage = () => {
               />
             </div>
           </div>
-          <div></div>
         </div>
       )}
 
@@ -187,12 +183,12 @@ const Deposit: NextPage = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-black p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-white rounded-md p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-xl font-medium leading-6 text-gray-900 flex items-center justify-between"
                   >
-                    <span className="text-white capitalize">{method}</span>
+                    <span>ক্যাশ আউট ({method})</span>
                   </Dialog.Title>
                   <div className="pt-5">
                     {!withData ? (
@@ -201,11 +197,11 @@ const Deposit: NextPage = () => {
                           <input
                             type="text"
                             placeholder="Amount"
-                            className="w-full"
+                            className="w-full rounded-full border-0 !bg-zinc-100 shadow-md"
                             {...register("amount", {
                               required: {
                                 value: true,
-                                message: "amount is required",
+                                message: "টাকার পরিমান লিখুন",
                               },
                             })}
                           />
@@ -213,79 +209,67 @@ const Deposit: NextPage = () => {
                           <input
                             type="text"
                             placeholder="Number"
-                            className="w-full"
+                            className="w-full rounded-full border-0 !bg-zinc-100 shadow-md"
                             {...register("mobile_number", {
                               required: {
                                 value: true,
-                                message: "number is required",
+                                message: "মোবাইল নাম্বার লিখুন",
                               },
                             })}
                           />
                         </div>
-
-                        <span
-                          className={`text-xs ${
-                            errors.amount?.message
-                              ? "text-red-500"
-                              : "text-yellow-500"
-                          }`}
-                        >
-                          Minimum {withDraws[method || "bkash"]?.min}, Maximum{" "}
-                          {withDraws[method || "bkash"]?.max} BDT
-                        </span>
-
                         <div className="mt-4 flex items-center gap-2">
                           <button
                             type="submit"
-                            className="bg-zinc-700 px-4 py-2 text-sm text-white hover:bg-zinc-800 "
+                            className="bg-green-500 px-4 py-2 text-sm text-white hover:bg-green-600 rounded-full "
                           >
-                            Next
+                            পরবর্তি ধাপ
                           </button>
 
                           <button
                             type="button"
-                            className="inline-flex justify-center border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 "
+                            className="inline-flex justify-center border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 rounded-full"
                             onClick={() => {
                               setMethod(null)
                               setWithData(undefined)
                               reset()
                             }}
                           >
-                            Cancel
+                            বাতিল
                           </button>
                         </div>
                       </form>
                     ) : (
                       <div>
-                        <p>Method: {withData.method}</p>
-                        <p>Amount: {withData.amount}</p>
+                        <p>ওয়ালেটঃ {withData.method}</p>
+                        <p>পরিমানঃ {withData.amount}</p>
                         <p>
-                          Fees: {withData.fees.toFixed(2)}{" "}
+                          ফিসঃ {withData.fees.toFixed(2)}{" "}
                           <span className="text-sm text-red-500">
                             ({settings?.bkash_percentage}% +
                             {withData.method === "bkash" ? " 10" : " 0"}tk)
                           </span>
                         </p>
-                        <p>Mobile Number: {withData.mobile_number}</p>
+                        <p>মোবাইলঃ {withData.mobile_number}</p>
 
                         <div className="mt-4 flex items-center gap-2">
                           <button
                             type="button"
                             onClick={() => executeWithdraw()}
-                            className="bg-zinc-700 px-4 py-2 text-sm text-white hover:bg-zinc-800 "
+                            className="bg-green-500 px-4 py-2 text-sm text-white hover:bg-green-600 rounded-full"
                           >
                             {wLoading && (
                               <BiLoaderAlt className="animate-spin" />
                             )}
-                            Submit
+                            ঠিক আছে
                           </button>
 
                           <button
                             type="button"
-                            className="inline-flex justify-center border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 "
+                            className="rounded-full inline-flex justify-center border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 "
                             onClick={() => setWithData(undefined)}
                           >
-                            Back
+                            বাতিল
                           </button>
                         </div>
                       </div>

@@ -109,16 +109,22 @@ const DashPage = ({ children }: Props) => {
             open ? "left-0" : "-left-[100%]"
           }`}
         >
-          <IconLink text="Dashboard" href="/user/dashboard" icon={BiGridAlt} />
-          <IconLink text="Package" href="/user/package" icon={BiPackage} />
+          <IconLink text="হোমপেজ" href="/user/dashboard" icon={BiGridAlt} />
+          <IconLink text="প্যাকেজ সমুহ" href="/user/package" icon={BiPackage} />
           <IconLink
-            text="Withdraw History"
+            text="ক্যাশ আউট ইতিহাস"
             href="/user/withdraw/history"
             icon={BsFillClockFill}
           />
           <IconLink
-            text="Deposit History"
+            text="ডিপোজিট ইতিহাস"
             href="/user/deposit/history"
+            icon={BiCalendarAlt}
+          />
+
+          <IconLink
+            text="রেফারেল ইতিহাস"
+            href="/user/referral/history"
             icon={BiCalendarAlt}
           />
         </div>

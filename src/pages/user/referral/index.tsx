@@ -3,6 +3,7 @@ import DashPage from "../../../components/DashPage"
 import { useSession } from "next-auth/react"
 import { toast } from "react-hot-toast"
 import { trpc } from "../../../utils/trpc"
+import CustomToast from "../../../components/CustomToast"
 
 const Referral = () => {
   const { data: session } = useSession()
@@ -13,19 +14,22 @@ const Referral = () => {
   return (
     <DashPage hideFooter>
       <div className="p-5">
-        <p className="mb-2">Link</p>
+        <p className="mb-2 text-center font-bold">রেফার লিংক</p>
         <div className="grid grid-cols-3">
           <input
             type="text"
-            className="col-span-2 bg-zinc-100 !border-0 !rounded-none !rounded-l-md"
+            disabled
+            className="col-span-2 !bg-white !border-0 !px-0"
             value={ref}
           />
           <button
             onClick={() => {
               navigator.clipboard.writeText(ref)
-              toast.success("Link copied to clipboard")
+              toast.custom(
+                <CustomToast success message="রেফার লিংক কপি করা হয়েছে" />
+              )
             }}
-            className="px-5 py-3 bg-black text-zinc-400 rounded-r-md"
+            className="px-5 py-3 bg-rose-500 text-white rounded-md"
           >
             Copy
           </button>
@@ -36,7 +40,7 @@ const Referral = () => {
         <div className="w-full overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="bg-black text-zinc-400 overflow-hidden">
+              <tr className="bg-white overflow-hidden border-2">
                 <th className="text-left px-5 py-3 whitespace-nowrap">Name</th>
                 <th className="text-left px-5 py-3 whitespace-nowrap">
                   Username
@@ -48,7 +52,7 @@ const Referral = () => {
             </thead>
             <tbody>
               {data?.map((ref) => (
-                <tr key={ref.id} className="odd:bg-zinc-800">
+                <tr key={ref.id} className="odd:bg-zinc-100">
                   <td className="text-left px-5 py-3 whitespace-nowrap">
                     {ref.first_name} {ref.last_name}
                   </td>

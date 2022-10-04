@@ -5,6 +5,7 @@ import { useRouter } from "next/router"
 import { trpc } from "../../utils/trpc"
 import { toast } from "react-hot-toast"
 import { useAccount } from "../../hooks/useAccount"
+import CustomToast from "../../components/CustomToast"
 
 const Dashboard: NextPage = () => {
   const router = useRouter()
@@ -25,34 +26,29 @@ const Dashboard: NextPage = () => {
 
   useEffect(() => {
     if (works !== undefined && works <= 0) {
-      toast.error("Ads limit over. Try again tomorrow")
+      toast.custom(
+        <CustomToast message="আজকের লিমিট শেষ, কাল আবার চেষ্টা করুণ" />
+      )
       router.push("/user/dashboard")
     }
   }, [works, router])
   return (
     <DashPage>
-      <div className="p-10">
-        <table className="w-full overflow-y-auto">
-          <thead>
-            <tr className="bg-black overflow-hidden">
-              <th className="w-[40%] text-left px-5 py-3">Title</th>
-              <th className="w-[30%] text-left px-5 py-3">Reward</th>
-              <th className="w-[30%] text-right px-5 py-3">Work</th>
-            </tr>
-          </thead>
+      <div className="overflow-y-auto">
+        <table className="w-full">
           <tbody>
             {ads?.map((ad) => (
-              <tr key={ad.videoId} className="odd:bg-zinc-800">
-                <td className="px-5 py-3">Video</td>
-                <td className="px-5 py-3">
-                  {pack ? pack.per_click : "..."} BDT
+              <tr key={ad.videoId} className="shadow-lg">
+                <td className="px-3 py-3">ভিডিও</td>
+                <td className="px-2 py-3 whitespace-nowrap">
+                  {pack ? pack.per_click : "..."} টাকা
                 </td>
-                <td className="px-5 py-3 whitespace-nowrap">
+                <td className="px-2 py-3 whitespace-nowrap">
                   <button
                     onClick={() => showAds()}
-                    className="px-3 py-2 bg-black text-zinc-400"
+                    className="px-5 py-2 bg-green-500 text-white rounded-full text-xs"
                   >
-                    Watch
+                    দেখুন
                   </button>
                 </td>
               </tr>
