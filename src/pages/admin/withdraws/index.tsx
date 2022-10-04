@@ -78,7 +78,7 @@ const Withs = () => {
           {deposits
             ?.filter((dep) => dep.pending)
             .map((dep) => (
-              <tr key={dep.id} className="odd:bg-zinc-800">
+              <tr key={dep.id} className="odd:bg-zinc-200">
                 <td className="px-5 py-2">{dep.id}</td>
                 <td className="px-5 py-2">{dep.user.username}</td>
                 <td className="px-5 py-2">{dep.mobile_number}</td>

@@ -10,7 +10,7 @@ const AdminHome = () => {
   return (
     <AdminPage>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <div className="bg-zinc-800 rounded-md p-5">
+        <div className="bg-zinc-100 rounded-md p-5">
           <p className="text-2xl font-black mb-5">Deposits</p>
           <p>
             Approved:{" "}
@@ -32,7 +32,7 @@ const AdminHome = () => {
               .reduce((prev, item) => prev + item.amount, 0)}
           </p>
         </div>
-        <div className="bg-zinc-800 rounded-md p-5">
+        <div className="bg-zinc-100 rounded-md p-5">
           <p className="text-2xl font-black mb-5">Withdraws</p>
           <p>
             Approved:{" "}
@@ -53,7 +53,7 @@ const AdminHome = () => {
               .reduce((prev, item) => prev + item.amount, 0)}
           </p>
         </div>
-        <div className="bg-zinc-800 rounded-md p-5">
+        <div className="bg-zinc-100 rounded-md p-5">
           <p className="text-2xl font-black mb-5">Users</p>
           <p>All: {users?.length}</p>
         </div>

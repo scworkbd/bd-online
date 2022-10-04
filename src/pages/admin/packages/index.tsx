@@ -41,7 +41,7 @@ const Packages = () => {
             packs
               .sort((a, b) => a.price - b.price)
               .map((dep) => (
-                <tr key={dep.id} className="odd:bg-zinc-800">
+                <tr key={dep.id} className="odd:bg-zinc-200">
                   <td className="px-5 py-2">{dep.name}</td>
                   <td className="px-5 py-2">{dep.price}</td>
                   <td className="px-5 py-2 flex gap-2 flex-wrap">

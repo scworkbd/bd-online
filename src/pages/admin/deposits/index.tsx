@@ -76,13 +76,13 @@ const Deposits = () => {
           {deposits
             ?.filter((dep) => dep.pending)
             .map((dep) => (
-              <tr key={dep.id} className="odd:bg-zinc-800">
+              <tr key={dep.id} className="odd:bg-zinc-200">
                 <td className="px-5 py-2">{dep.id}</td>
                 <td className="px-5 py-2">{dep.user.username}</td>
                 <td className="px-5 py-2">{dep.tnx_id}</td>
                 <td className="px-5 py-2">{dep.amount}</td>
                 <td className="px-5 py-2">{dep.method}</td>
-                <td className="px-5 py-2">
+                <td className="px-5 py-2 whitespace-nowrap">
                   {moment(dep.date).format("DD MMM, YYYY hh:mm a")}
                 </td>
                 <td className="flex items-center flex-wrap gap-2 px-5 py-2">

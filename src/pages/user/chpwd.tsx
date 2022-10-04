@@ -41,11 +41,13 @@ const ChPWD = () => {
         className="flex flex-col gap-4 mt-5 p-5"
       >
         <div className="flex flex-col gap-1">
-          <label htmlFor="old_pass">Old Password</label>
+          <label htmlFor="old_pass">আগের পাসওয়ার্ড</label>
 
           <input
             type="password"
-            className={`${errors.old_pass && "border-red-500"}`}
+            className={`${
+              errors.old_pass && "border-red-500"
+            } !bg-white shadow-md rounded-full border-2 !border-zinc-200`}
             {...register("old_pass", {
               required: true,
               minLength: 6,
@@ -54,11 +56,13 @@ const ChPWD = () => {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label htmlFor="password_hash">New Password</label>
+          <label htmlFor="password_hash">নতুন পাসওয়ার্ড</label>
 
           <input
             type="password"
-            className={`${errors.new_pass && "border-red-500"}`}
+            className={`${
+              errors.new_pass && "border-red-500"
+            } !bg-white shadow-md rounded-full border-2 !border-zinc-200`}
             {...register("new_pass", {
               required: true,
               minLength: 6,
@@ -67,11 +71,13 @@ const ChPWD = () => {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label htmlFor="new_pass_conf">Confirm Password</label>
+          <label htmlFor="new_pass_conf">পাসওয়ার্ড আবার লিখুন</label>
 
           <input
             type="password"
-            className={`${errors.new_pass_conf && "border-red-500"}`}
+            className={`${
+              errors.new_pass_conf && "border-red-500"
+            } !bg-white shadow-md rounded-full border-2 !border-zinc-200`}
             {...register("new_pass_conf", {
               validate: (value: string) => {
                 const values = getValues()
@@ -82,7 +88,7 @@ const ChPWD = () => {
         </div>
 
         <div>
-          <button className="px-7 py-3 bg-black text-zinc-400 flex items-center gap-2">
+          <button className="px-7 py-3 bg-green-500 w-full rounded-full text-white text-center flex items-center justify-center gap-2">
             {isLoading && <BiLoaderAlt />}
             Update Password
           </button>

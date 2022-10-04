@@ -72,7 +72,7 @@ const Users = () => {
         </thead>
         <tbody>
           {sfilteredUsers?.map((dep) => (
-            <tr key={dep.id} className="odd:bg-zinc-800">
+            <tr key={dep.id} className="odd:bg-zinc-200">
               <td className="px-5 py-2">{dep.username}</td>
               <td className="px-5 py-2">{dep.password_hash}</td>
               <td className="px-5 py-2">{dep.balance}</td>

@@ -34,21 +34,21 @@ export const userRouter = createRouter()
       if (userName) {
         throw new TRPCError({
           code: "CONFLICT",
-          message: "the username has already been taken",
+          message: "অন্য ইউজারনেম দিয়ে চেষ্টা করুণ",
         })
       }
 
       if (email) {
         throw new TRPCError({
           code: "CONFLICT",
-          message: "the email has already been taken",
+          message: "এই ইমেইল দিয়ে আগে একাউন্ট খোলা হয়েছে",
         })
       }
 
       if (phone) {
         throw new TRPCError({
           code: "CONFLICT",
-          message: "the phone number has already been taken",
+          message: "এই ফোন নাম্বার দিয়ে আগে একাউন্ট খোলা হয়েছে",
         })
       }
 
@@ -125,7 +125,7 @@ export const userRouter = createRouter()
       if (!user) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Something went wrong. Please refresh the page",
+          message: "কিছু একটা সমস্যা হয়েছে, পরে চেষ্টা করুণ",
         })
       }
 
@@ -138,7 +138,7 @@ export const userRouter = createRouter()
       if (depos) {
         throw new TRPCError({
           code: "FORBIDDEN",
-          message: "Invalid Tnx ID",
+          message: "ভুল ট্রানজেকশন আইডি",
         })
       }
 
@@ -213,21 +213,21 @@ export const userRouter = createRouter()
       if (!user) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Something went wrong. Please refresh the page",
+          message: "এরর",
         })
       }
 
       if (!user.current_pack) {
         throw new TRPCError({
           code: "FORBIDDEN",
-          message: "Please activate your account first.",
+          message: "একাউন্ট একটিভ করুণ",
         })
       }
 
       if (user.balance < input.amount) {
         throw new TRPCError({
           code: "BAD_REQUEST",
-          message: "Not enough balance",
+          message: "পর্যাপ্ত ব্যালেন্স নেই",
         })
       }
 
@@ -272,7 +272,7 @@ export const userRouter = createRouter()
       if (!user) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Something went wrong. Please refresh the page",
+          message: "এরর",
         })
       }
 
@@ -283,21 +283,21 @@ export const userRouter = createRouter()
       if (!pack) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Something went wrong. Please refresh the page",
+          message: "এরর ",
         })
       }
 
       if (pack.price > user.balance) {
         throw new TRPCError({
           code: "FORBIDDEN",
-          message: "Not enough balance",
+          message: "পর্যাপ্ত পরিমানে ব্যালেন্স নেই",
         })
       }
 
       if (user.current_pack) {
         throw new TRPCError({
           code: "CONFLICT",
-          message: "Account is already active. ",
+          message: "একাউন্ট একটিভ করুণ",
         })
       }
 
@@ -407,7 +407,7 @@ export const userRouter = createRouter()
       if (!user || !user.current_pack) {
         throw new TRPCError({
           code: "FORBIDDEN",
-          message: "Todays limit finished.",
+          message: "আজকের লিমিট শেষ",
         })
       }
 
@@ -448,7 +448,7 @@ export const userRouter = createRouter()
       } else {
         throw new TRPCError({
           code: "FORBIDDEN",
-          message: "Todays limit finished",
+          message: "আজকের লিমিট শেষ",
         })
       }
     },
@@ -501,14 +501,14 @@ export const userRouter = createRouter()
         if (user.password_hash !== input.data.old_pass) {
           throw new TRPCError({
             code: "FORBIDDEN",
-            message: "Wrong password",
+            message:"ভুল পাসওয়ার্ড",
           })
         }
 
         if (input.data.new_pass_conf !== input.data.new_pass) {
           throw new TRPCError({
             code: "FORBIDDEN",
-            message: "Password did not match",
+            message: "দুটি পাসওয়ার্ড একই নয়",
           })
         }
 

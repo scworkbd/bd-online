@@ -10,13 +10,14 @@ import {
   BiGridAlt,
   BiX,
 } from "react-icons/bi"
-import { signIn } from "next-auth/react"
+import { signIn, signOut } from "next-auth/react"
 
 import Loading from "./Loading"
 import { trpc } from "../utils/trpc"
 import Image from "next/dist/client/image"
 import IconLink from "./IconLink"
 import { BsFillClockFill } from "react-icons/bs"
+import { HiUserGroup } from "react-icons/hi"
 
 type Props = {
   children?: React.ReactNode | React.ReactNode[]
@@ -125,8 +126,15 @@ const DashPage = ({ children }: Props) => {
           <IconLink
             text="রেফারেল ইতিহাস"
             href="/user/referral/history"
-            icon={BiCalendarAlt}
+            icon={HiUserGroup}
           />
+
+          <button
+            onClick={() => signOut()}
+            className="flex items-center gap-2 text-lg px-5 py-2 text-red-500"
+          >
+            Logout
+          </button>
         </div>
 
         {open && (

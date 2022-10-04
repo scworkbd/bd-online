@@ -62,7 +62,7 @@ const Ads = () => {
         </thead>
         <tbody>
           {deposits?.map((dep, index) => (
-            <tr key={dep.videoId} className="odd:bg-zinc-800">
+            <tr key={dep.videoId} className="odd:bg-zinc-200">
               <td className="px-5 py-2">{index + 1}</td>
               <td className="px-5 py-2">{dep.videoId}</td>
               <td className="px-5 py-2 whitespace-nowrap">

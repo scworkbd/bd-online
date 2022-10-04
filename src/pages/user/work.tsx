@@ -41,7 +41,7 @@ const Work = () => {
       {start && <Timer />}
       {!start && (
         <h1 className="text-2xl font-bold text-center py-10 text-red-500">
-          Play the video to complete work
+          কাজ শেষ করতে ভিডিও প্লে করুণ
         </h1>
       )}
     </DashPage>
