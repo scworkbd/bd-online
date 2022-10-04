@@ -18,6 +18,7 @@ import Image from "next/dist/client/image"
 import IconLink from "./IconLink"
 import { BsFillClockFill } from "react-icons/bs"
 import { HiUserGroup } from "react-icons/hi"
+import { FaCog } from "react-icons/fa"
 
 type Props = {
   children?: React.ReactNode | React.ReactNode[]
@@ -112,6 +113,7 @@ const DashPage = ({ children }: Props) => {
         >
           <IconLink text="হোমপেজ" href="/user/dashboard" icon={BiGridAlt} />
           <IconLink text="প্যাকেজ সমুহ" href="/user/package" icon={BiPackage} />
+          <IconLink text="কাজ" href="/user/ptc" icon={FaCog} />
           <IconLink
             text="ক্যাশ আউট ইতিহাস"
             href="/user/withdraw/history"
