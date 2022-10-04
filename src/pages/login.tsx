@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import type { NextPage } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { signIn } from "next-auth/react"
-import { useRouter } from "next/router"
 import { BiLoaderAlt, BiLockAlt, BiUser } from "react-icons/bi"
 import CustomToast from "../components/CustomToast"
 

@@ -3,13 +3,18 @@ import type { NextPage } from "next"
 
 import { useSession } from "next-auth/react"
 import Loading from "../components/Loading"
+import { signOut } from "next-auth/react"
 
 const Home: NextPage = () => {
   const router = useRouter()
-  const { status } = useSession()
+  const { data, status } = useSession()
 
   if (status === "authenticated") {
-    router.push("/user/dashboard")
+    if (data.user?.is_banned) {
+      signOut()
+    } else {
+      router.push("/user/dashboard")
+    }
   }
 
   if (status === "unauthenticated") {

@@ -13,7 +13,7 @@ import Balance from "../../components/Balance"
 import DashPage from "../../components/DashPage"
 
 import { HiOutlineCash, HiCash, HiUserGroup, HiUser } from "react-icons/hi"
-import { BiNetworkChart, BiBroadcast, BiBox, BiCommand } from "react-icons/bi"
+import { BiBroadcast, BiBox } from "react-icons/bi"
 import { AiOutlineWhatsApp } from "react-icons/ai"
 import { FaTelegramPlane } from "react-icons/fa"
 
@@ -31,20 +31,20 @@ const Dashboard: NextPage = () => {
   ])
   const router = useRouter()
 
-  const pendingDeposit =
-    deposits
-      ?.filter((item) => item.pending === true)
-      .reduce((prev, item) => prev + item.amount, 0) || 0
+  // const pendingDeposit =
+  //   deposits
+  //     ?.filter((item) => item.pending === true)
+  //     .reduce((prev, item) => prev + item.amount, 0) || 0
 
   const totalDeposit =
     deposits
       ?.filter((item) => !item.pending && item.approved)
       .reduce((prev, item) => prev + item.amount, 0) || 0
 
-  const pendingWithdraw =
-    withdraws
-      ?.filter((item) => item.pending === true)
-      .reduce((prev, item) => prev + item.amount, 0) || 0
+  // const pendingWithdraw =
+  //   withdraws
+  //     ?.filter((item) => item.pending === true)
+  //     .reduce((prev, item) => prev + item.amount, 0) || 0
 
   const totalWithdraw =
     withdraws

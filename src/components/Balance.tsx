@@ -22,6 +22,7 @@ const Balance = () => {
             width={50}
             height={50}
             layout="responsive"
+            alt="ok"
           />
         </div>
         <div className="flex flex-col">

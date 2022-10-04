@@ -15,12 +15,7 @@ import CustomToast from "../../../components/CustomToast"
 type Methods = "bkash" | "nagad" | "upay"
 
 const Deposit: NextPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<{
+  const { register, handleSubmit, reset } = useForm<{
     amount: number
     method: Methods
     mobile_number: string

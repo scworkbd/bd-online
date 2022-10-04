@@ -1,6 +1,5 @@
 import React from "react"
 import DashPage from "../../../components/DashPage"
-import moment from "moment"
 import { useDeposit } from "../../../hooks/useDeposits"
 
 const History = () => {

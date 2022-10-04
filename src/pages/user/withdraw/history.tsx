@@ -1,7 +1,6 @@
 import React from "react"
 import DashPage from "../../../components/DashPage"
 import { useWithdraw } from "../../../hooks/useWithdraw"
-import moment from "moment"
 
 const History = () => {
   const { data: withdraws } = useWithdraw()
