@@ -14,6 +14,8 @@ import DashPage from "../../components/DashPage"
 
 import { HiOutlineCash, HiCash, HiUserGroup, HiUser } from "react-icons/hi"
 import { BiNetworkChart, BiBroadcast, BiBox, BiCommand } from "react-icons/bi"
+import { AiOutlineWhatsApp } from "react-icons/ai"
+import { FaTelegramPlane } from "react-icons/fa"
 
 import { trpc } from "../../utils/trpc"
 
@@ -53,42 +55,60 @@ const Dashboard: NextPage = () => {
     <DashPage>
       <Balance />
       <div className="p-5 mt-5">
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           <Link href="/user/deposit">
-            <div className="aspect-square rounded-full bg-green-500/20 grid place-items-center">
-              <div className=" flex flex-col items-center">
+            <div className="flex flex-col items-center gap-2">
+              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
                 <HiOutlineCash className="tp:text-3xl text-green-500" />
-                <p className="text-xs hidden tp:block">Deposit</p>
               </div>
+              <p className="text-xs">ডিপোজিট</p>
             </div>
           </Link>
 
           <Link href="/user/withdraw">
-            <div className="aspect-square rounded-full bg-green-500/20 grid place-items-center">
-              <div className=" flex flex-col items-center">
+            <div className="flex flex-col items-center gap-2">
+              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
                 <HiCash className="text-xl tp:text-3xl text-green-500" />
-                <p className="text-xs hidden tp:block">Withdraw</p>
               </div>
+              <p className="text-xs text-center">ক্যাশ আউট</p>
             </div>
           </Link>
 
           <Link href="/user/referral">
-            <div className="aspect-square rounded-full bg-green-500/20 grid place-items-center">
-              <div className=" flex flex-col items-center">
+            <div className="flex flex-col items-center gap-2">
+              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
                 <HiUserGroup className="tp:text-3xl text-green-500" />
-                <p className="text-xs hidden tp:block">Refer</p>
               </div>
+              <p className="text-xs">রেফার</p>
             </div>
           </Link>
 
           <Link href="/user/profile">
-            <div className="aspect-square rounded-full bg-green-500/20 grid place-items-center">
-              <div className=" flex flex-col items-center">
+            <div className="flex flex-col items-center gap-2">
+              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
                 <HiUser className="tp:text-3xl text-green-500" />
-                <p className="text-xs hidden tp:block">Profile</p>
               </div>
+              <p className="text-xs">প্রোফাইল</p>
             </div>
           </Link>
+
+          <Link href={`https://wa.me/${settings?.whatsapp_number}`}>
+            <div className="flex flex-col items-center gap-2">
+              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
+                <AiOutlineWhatsApp className="tp:text-3xl text-green-500" />
+              </div>
+              <p className="text-xs">হোয়াটসঅ্যাপ</p>
+            </div>
+          </Link>
+
+          <a href={settings?.telegram_link}>
+            <div className="flex flex-col items-center gap-2">
+              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
+                <FaTelegramPlane className="tp:text-3xl text-green-500" />
+              </div>
+              <p className="text-xs">টেলিগ্রাম</p>
+            </div>
+          </a>
         </div>
       </div>
 
@@ -98,7 +118,13 @@ const Dashboard: NextPage = () => {
             <BiBox className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
             <h2 className="text-xl font-bold text-green-700 mb-3">প্যাকেজ</h2>
             <p className="font-bold text-green-500 text-sm">
-              {pack ? pack.name : "প্যাকেজ কিনতে এখানে ক্লিক করুণ"}
+              {pack ? (
+                pack.name
+              ) : (
+                <span onClick={() => router.push("/user/package")}>
+                  প্যাকেজ কিনতে এখানে ক্লিক করুণ
+                </span>
+              )}
             </p>
           </div>
 

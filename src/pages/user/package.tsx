@@ -9,6 +9,7 @@ import { useRouter } from "next/router"
 import { Packages } from "@prisma/client"
 import { useSettings } from "../../hooks/useSettings"
 import { BsCheck2Circle } from "react-icons/bs"
+import CustomToast from "../../components/CustomToast"
 
 const Package = () => {
   const [selPack, setSelPack] = useState<Packages | null>(null)
@@ -18,13 +19,13 @@ const Package = () => {
 
   const { mutate, isLoading } = trpc.useMutation(["user.subscribe"], {
     onSuccess: () => {
-      setSelPack(null)
-      toast.success("প্যাকেজ একটিভ হয়েছে")
+      toast.custom(<CustomToast success message="প্যাকেজ চালু হয়েছে" />)
       router.push("/user/dashboard")
     },
-    onError: (error) => {
-      toast.error(error.message)
-      setSelPack(null)
+    onError: () => {
+      toast.custom(
+        <CustomToast message="আপনার পর্যাপ্ত পরিমানে ব্যালেন্স নেই" />
+      )
     },
   })
 
@@ -42,47 +43,49 @@ const Package = () => {
     <DashPage hideFooter>
       <div className="grid grid-cols-1 gap-5 p-10">
         {packages?.map((pack) => (
-          <div className="p-10 bg-zinc-700" key={pack.id}>
+          <div
+            className="p-10 bg-[url('/packbg.jpg')] bg-zinc-100 border-2 rounded-md shadow-md bg-cover bg-center"
+            key={pack.id}
+          >
             <div className="flex items-center justify-between">
-              <h2 className="text-center font-bold text-3xl text-rose-500">
+              <h2 className="text-center font-bold text-3xl text-green-500">
                 {pack.name}
               </h2>
-              <h2 className="text-center text-lg">{pack.price} BDT</h2>
+              <h2 className="text-center text-lg">{pack.price} টাকা</h2>
             </div>
 
             <ul className="mt-5">
               <li className="flex items-center gap-2">
-                <BsCheck2Circle className="text-green-500" /> Daily Video:{" "}
-                {pack.daily_limit}
+                <BsCheck2Circle className="text-green-500" /> প্রতিদিনের ভিডিওঃ{" "}
+                {pack.daily_limit} টি
               </li>
               <li className="flex items-center gap-2">
-                <BsCheck2Circle className="text-green-500" /> Per Ad:{" "}
-                {pack.per_click} BDT
+                <BsCheck2Circle className="text-green-500" /> প্রতি ক্লিকঃ{" "}
+                {pack.per_click} টাকা
               </li>
               <li className="flex items-center gap-2">
-                <BsCheck2Circle className="text-green-500" /> Daily Income:{" "}
+                <BsCheck2Circle className="text-green-500" /> প্রতিদিনের ইনকামঃ{" "}
                 {pack.daily_limit * pack.per_click} BDT
               </li>
               <li className="flex items-center gap-2">
-                <BsCheck2Circle className="text-green-500" /> Referral
-                Comission:{" "}
+                <BsCheck2Circle className="text-green-500" /> রেফারেল কমিশনঃ{" "}
                 {(
                   (pack.price / 100) *
                   (settings ? settings?.referral_commision : 0)
                 ).toFixed(2)}{" "}
-                BDT
+                টাকা
               </li>
               <li className="flex items-center gap-2">
-                <BsCheck2Circle className="text-green-500" /> Validity:{" "}
-                {pack.validity} Days
+                <BsCheck2Circle className="text-green-500" /> মেয়াদঃ{" "}
+                {pack.validity} দিন
               </li>
             </ul>
 
             <button
               onClick={() => setSelPack(pack)}
-              className="px-5 py-3 bg-zinc-900 hover:bg-zinc-800 text-white mt-5"
+              className="px-5 py-3 bg-green-500 hover:bg-green-600 text-white mt-5 w-full rounded-full "
             >
-              Start Package
+              বিনিয়োগ করুণ
             </button>
           </div>
         ))}
@@ -117,32 +120,32 @@ const Package = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-black p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-green-400 rounded-lg p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-xl font-medium leading-6 text-white inline-flex justify-between items-center w-full"
+                    className="text-xl font-medium leading-6 inline-flex justify-between items-center w-full"
                   >
-                    <span>Activate packae?</span>
+                    <span className="font-bold">{selPack?.name}</span>
                   </Dialog.Title>
                   <div className="pt-5">
-                    <p>Are you sure to subscribe this plan?</p>
+                    <p>আপনি কি সত্যি এই প্যাকেজটিতে বিনিয়োগ করতে চাচ্ছেন?</p>
 
                     <div className="mt-4 flex items-center gap-2">
                       <button
                         type="button"
                         onClick={() => startPackage()}
-                        className="inline-flex gap-2 justify-center items-center bg-zinc-800 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700"
+                        className="inline-flex gap-2 justify-center items-center bg-green-900 rounded-full px-5 py-2 text-sm font-medium text-white hover:bg-zinc-700"
                       >
                         {isLoading && <BiLoaderAlt className="animate-spin" />}
-                        Activate
+                        বিনিয়োগ করুণ
                       </button>
 
                       <button
                         type="button"
-                        className="inline-flex gap-2 justify-center items-center bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600"
+                        className="inline-flex gap-2 justify-center items-center bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 rounded-full"
                         onClick={() => setSelPack(null)}
                       >
-                        Back
+                        বাতিল
                       </button>
                     </div>
                   </div>

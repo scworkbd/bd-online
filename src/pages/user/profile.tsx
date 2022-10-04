@@ -5,6 +5,7 @@ import { useAccount } from "../../hooks/useAccount"
 import { User } from "@prisma/client"
 import { trpc } from "../../utils/trpc"
 import { toast } from "react-hot-toast"
+import CustomToast from "../../components/CustomToast"
 
 type UserInput = Omit<
   User,
@@ -29,10 +30,7 @@ const ChPWD = () => {
 
   const { mutate } = trpc.useMutation(["user.updateUser"], {
     onSuccess: () => {
-      toast.success("Profile updated")
-    },
-    onError: () => {
-      toast.error("Something went wrong")
+      toast.custom(<CustomToast success message="প্রফাইল আপডেট করা হয়েছে" />)
     },
   })
 
@@ -53,33 +51,41 @@ const ChPWD = () => {
         onSubmit={handleSubmit(updateUser)}
         className="flex flex-col gap-4 mt-5 p-5"
       >
-        <div className="flex flex-col gap-1">
-          <label htmlFor="first_name">First Name</label>
-          <input
-            type="text"
-            className={`${errors.first_name && "border-red-500"}`}
-            {...register("first_name", {
-              required: true,
-            })}
-          />
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-col gap-1">
+            <label htmlFor="first_name">নামের প্রথম অংশ</label>
+            <input
+              type="text"
+              className={`${
+                errors.first_name && "border-red-500"
+              } rounded-full !bg-zinc-100 border-none shadow-md`}
+              {...register("first_name", {
+                required: true,
+              })}
+            />
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <label htmlFor="last_name">নামের শেষ অংশ</label>
+            <input
+              type="text"
+              className={`${
+                errors.last_name && "border-red-500"
+              } rounded-full !bg-zinc-100 border-none shadow-md`}
+              {...register("last_name", {
+                required: true,
+              })}
+            />
+          </div>
         </div>
 
         <div className="flex flex-col gap-1">
-          <label htmlFor="last_name">Last Name</label>
+          <label htmlFor="phone">মোবাইল নাম্বার</label>
           <input
             type="text"
-            className={`${errors.last_name && "border-red-500"}`}
-            {...register("last_name", {
-              required: true,
-            })}
-          />
-        </div>
-
-        <div className="flex flex-col gap-1">
-          <label htmlFor="phone">Mobile Number</label>
-          <input
-            type="text"
-            className={`${errors.phone && "border-red-500"}`}
+            className={`${
+              errors.phone && "border-red-500"
+            } rounded-full !bg-zinc-100 border-none shadow-md`}
             {...register("phone", {
               required: true,
             })}
@@ -87,28 +93,28 @@ const ChPWD = () => {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">ইমেইল</label>
           <input
             type="email"
             disabled
-            className={`!bg-zinc-800 !border-0`}
+            className={`!border-0 rounded-full !bg-zinc-300 border-none shadow-md`}
             value={account?.email}
           />
         </div>
 
         <div className="flex flex-col gap-1">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">ইউজারনেম</label>
           <input
             type="text"
             disabled
             value={account?.username}
-            className={`!bg-zinc-800 !border-0`}
+            className={`!border-0 rounded-full !bg-zinc-300 border-none shadow-md`}
           />
         </div>
 
         <div>
-          <button className="px-7 py-3 bg-black hover:bg-zinc-700 text-white">
-            Update Profile
+          <button className="px-7 py-3 bg-green-500 rounded-full w-full shadow-md">
+            প্রোফাইল হালনাগাদ করুণ
           </button>
         </div>
       </form>

@@ -15,23 +15,22 @@ const History = () => {
         <div className="w-full overflow-y-auto">
           <table className="max-w-full text-xs">
             <thead>
-              <tr className="bg-black text-white overflow-hidden">
+              <tr className="bg-white text-black overflow-hidden border-2">
                 <th className="text-left px-5 py-3 whitespace-nowrap">
-                  Tracking Number
+                  ট্রাকিং নাম্বার
                 </th>
-                <th className="text-left px-5 py-3">Wallet</th>
-                <th className="text-left px-5 py-3">Mobile</th>
-                <th className="text-left px-5 py-3">Amount</th>
-                <th className="text-left px-5 py-3">Fees</th>
-                <th className="text-left px-5 py-3">Paid</th>
-                <th className="text-left px-5 py-3">Status</th>
-                <th className="text-left px-5 py-3">Time</th>
+                <th className="text-left px-5 py-3">ওয়ালেট</th>
+                <th className="text-left px-5 py-3">মোবাইল</th>
+                <th className="text-left px-5 py-3">পরিমান</th>
+                <th className="text-left px-5 py-3">ফিস</th>
+                <th className="text-left px-5 py-3">পেমেন্ট</th>
+                <th className="text-left px-5 py-3">স্টাটাস</th>
               </tr>
             </thead>
 
             <tbody>
               {withdraws?.map((withdraw) => (
-                <tr key={withdraw.id} className="odd:bg-zinc-800">
+                <tr key={withdraw.id} className="odd:bg-zinc-100">
                   <td className="text-left px-5 py-3">{withdraw.id}</td>
                   <td className="text-left px-5 py-3">{withdraw.method}</td>
                   <td className="text-left px-5 py-3">
@@ -48,24 +47,24 @@ const History = () => {
                   </td>
                   <td className="text-left px-5 py-3">
                     {withdraw.pending ? (
-                      <span className="px-3 py-1 text-xs bg-black rounded-full">
+                      <span className="px-3 py-1 text-xs bg-yellow-500 rounded-full">
                         Pending
                       </span>
                     ) : withdraw.approved ? (
-                      <span className="px-3 py-1 text-xs bg-black rounded-full">
+                      <span className="px-3 py-1 text-xs bg-green-500 rounded-full">
                         Paid
                       </span>
                     ) : (
-                      <span className="px-3 py-1 text-xs bg-black rounded-full">
+                      <span className="px-3 py-1 text-xs bg-red-500 rounded-full">
                         Declined
                       </span>
                     )}
                   </td>
-                  <td className="text-left px-5 py-3 whitespace-nowrap">
+                  {/* <td className="text-left px-5 py-3 whitespace-nowrap">
                     {moment(withdraw.date.toISOString()).format(
                       "DD MMM, YYYY h:mm a"
                     )}
-                  </td>
+                  </td> */}
                 </tr>
               ))}
             </tbody>

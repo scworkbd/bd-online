@@ -8,13 +8,12 @@ const Deposit: NextPage = () => {
 
   return (
     <DashPage hideFooter>
-      <div className="grid grid-cols-6 gap-5 mt-10 p-10">
-        <div></div>
+      <div className="grid grid-cols-2 gap-5 mt-10 p-5">
         <div
           onClick={() => router.push("/user/deposit/bkash")}
-          className="text-center col-span-2"
+          className="text-center"
         >
-          <div className="rounded-md p-3 bg-zinc-800">
+          <div className="rounded-md p-3">
             <Image
               src="/icons/bkash.png"
               width={100}
@@ -22,15 +21,13 @@ const Deposit: NextPage = () => {
               alt="bkash"
             />
           </div>
-
-          <span className="mt-2 block">bKash</span>
         </div>
 
         <div
           onClick={() => router.push("/user/deposit/nagad")}
-          className="text-center col-span-2"
+          className="text-center"
         >
-          <div className="rounded-md p-3 bg-zinc-800">
+          <div className="rounded-md p-3">
             <Image
               src="/icons/nagad.png"
               width={100}
@@ -38,10 +35,7 @@ const Deposit: NextPage = () => {
               alt="bkash"
             />
           </div>
-
-          <span className="mt-2 block">Nagad</span>
         </div>
-        <div></div>
       </div>
     </DashPage>
   )
