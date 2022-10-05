@@ -3,23 +3,12 @@ import Link from "next/link"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/router"
 
-import {
-  BiPackage,
-  BiCalendarAlt,
-  BiMenuAltLeft,
-  BiGridAlt,
-  BiX,
-  BiDownload,
-} from "react-icons/bi"
+import { BiDownload } from "react-icons/bi"
 import { signIn, signOut } from "next-auth/react"
 
 import Loading from "./Loading"
 import { trpc } from "../utils/trpc"
 import Image from "next/dist/client/image"
-import IconLink from "./IconLink"
-import { BsFillClockFill } from "react-icons/bs"
-import { HiUserGroup } from "react-icons/hi"
-import { FaCog } from "react-icons/fa"
 import { GoHome, GoPackage, GoSignOut } from "react-icons/go"
 
 type Props = {
@@ -34,7 +23,6 @@ const DashPage = ({ children }: Props) => {
     adminUsername: string
     adminPassword: string
   } | null>(null)
-  const [open, setOpen] = useState(false)
 
   const { data: profile, isLoading } = trpc.useQuery([
     "user.details",
@@ -99,7 +87,7 @@ const DashPage = ({ children }: Props) => {
           ) : (
             <a
               className="bg-green-500 px-4 py-2 rounded-full text-white flex items-center gap-2"
-              href="/"
+              href="/app.apk"
             >
               <BiDownload className="text-lg" />
               Download App
