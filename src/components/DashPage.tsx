@@ -9,6 +9,7 @@ import {
   BiMenuAltLeft,
   BiGridAlt,
   BiX,
+  BiDownload,
 } from "react-icons/bi"
 import { signIn, signOut } from "next-auth/react"
 
@@ -19,6 +20,7 @@ import IconLink from "./IconLink"
 import { BsFillClockFill } from "react-icons/bs"
 import { HiUserGroup } from "react-icons/hi"
 import { FaCog } from "react-icons/fa"
+import { GoHome, GoPackage, GoSignOut } from "react-icons/go"
 
 type Props = {
   children?: React.ReactNode | React.ReactNode[]
@@ -70,7 +72,6 @@ const DashPage = ({ children }: Props) => {
   return (
     <div className="max-w-lg mx-auto">
       <header className="h-14 px-5 fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg flex items-center gap-5 z-20 bg-white shadow-md">
-        <BiMenuAltLeft className="text-xl" onClick={() => setOpen(!open)} />
         <div className="flex items-center justify-center">
           <Link href="/user/dashboard">
             <Image src="/logo.png" width={100} height={30} alt="logo" />
@@ -78,7 +79,7 @@ const DashPage = ({ children }: Props) => {
         </div>
 
         <div className="flex items-center justify-end ml-auto">
-          {adminData && (
+          {adminData ? (
             <button
               onClick={() => {
                 localStorage.removeItem("admin")
@@ -95,60 +96,44 @@ const DashPage = ({ children }: Props) => {
             >
               Admin
             </button>
+          ) : (
+            <a
+              className="bg-green-500 px-4 py-2 rounded-full text-white flex items-center gap-2"
+              href="/"
+            >
+              <BiDownload className="text-lg" />
+              Download App
+            </a>
           )}
         </div>
       </header>
 
-      <aside
-        className={`w-full mx-auto h-screen fixed top-0 left-0  z-50 isolate transition-all ${
-          open
-            ? "bg-black/10 pointer-events-auto"
-            : "bg-transparent pointer-events-none"
-        }`}
-      >
-        <div
-          className={`w-full max-w-[250px] bg-black h-screen flex flex-col z-10 absolute top-0  transition-all ${
-            open ? "left-0" : "-left-[100%]"
-          }`}
-        >
-          <IconLink text="হোমপেজ" href="/user/dashboard" icon={BiGridAlt} />
-          <IconLink text="প্যাকেজ সমুহ" href="/user/package" icon={BiPackage} />
-          <IconLink text="কাজ" href="/user/ptc" icon={FaCog} />
-          <IconLink
-            text="ক্যাশ আউট ইতিহাস"
-            href="/user/withdraw/history"
-            icon={BsFillClockFill}
-          />
-          <IconLink
-            text="ডিপোজিট ইতিহাস"
-            href="/user/deposit/history"
-            icon={BiCalendarAlt}
-          />
-
-          <IconLink
-            text="রেফারেল ইতিহাস"
-            href="/user/referral/history"
-            icon={HiUserGroup}
-          />
-
-          <button
-            onClick={() => signOut()}
-            className="flex items-center gap-2 text-lg px-5 py-2 text-red-500"
-          >
-            Logout
-          </button>
-        </div>
-
-        {open && (
-          <BiX
-            className="bg-red-500 text-white absolute top-2 right-2 text-3xl transition-all"
-            onClick={() => setOpen(!open)}
-          />
-        )}
-      </aside>
-
-      <div className="pt-14">
+      <div className="pt-14 pb-32">
         <div>{children}</div>
+      </div>
+
+      <div className="px-10 py-5 flex items-center justify-evenly fixed bottom-0 left-0 w-full bg-white shadow-md border-t-2 border-emerald-600">
+        <Link href="/user/package">
+          <a className="flex flex-col gap-2 items-center">
+            <GoPackage className="text-2xl" />
+            <span className="text-xs">প্যাকেজ</span>
+          </a>
+        </Link>
+
+        <Link href="/user/dashboard">
+          <a className="flex flex-col gap-2 items-center">
+            <GoHome className="text-2xl" />
+            <span className="text-xs">হোম</span>
+          </a>
+        </Link>
+
+        <p
+          onClick={() => signOut()}
+          className="flex flex-col gap-2 items-center"
+        >
+          <GoSignOut className="text-2xl" />
+          <span className="text-xs">লগ আউট</span>
+        </p>
       </div>
     </div>
   )

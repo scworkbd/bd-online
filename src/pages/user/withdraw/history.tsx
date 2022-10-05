@@ -7,10 +7,8 @@ const History = () => {
 
   return (
     <DashPage hideFooter>
-      <h1 className="text-2xl font-bold text-center mb-3 mt-10">
-        Withdraw History
-      </h1>
       <div className="p-5">
+        <h1 className="text-2xl font-bold mb-3">ক্যাশ আউট ইতিহাস</h1>
         <div className="w-full overflow-y-auto">
           <table className="max-w-full text-xs">
             <thead>

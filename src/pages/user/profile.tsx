@@ -6,6 +6,7 @@ import { User } from "@prisma/client"
 import { trpc } from "../../utils/trpc"
 import { toast } from "react-hot-toast"
 import CustomToast from "../../components/CustomToast"
+import Link from "next/link"
 
 type UserInput = Omit<
   User,
@@ -112,10 +113,16 @@ const ChPWD = () => {
           />
         </div>
 
-        <div>
-          <button className="px-7 py-3 bg-green-500 rounded-full w-full shadow-md">
+        <div className="grid grid-cols-2 gap-2">
+          <button className="px-7 py-3 bg-green-500 text-white rounded-full w-full shadow-md text-sm">
             প্রোফাইল হালনাগাদ করুণ
           </button>
+
+          <Link href="/user/chpwd">
+            <a className="text-green-500 text-center text-sm flex items-center justify-center underline underline-offset-2 decoration-red-500">
+              পাসওয়ার্ড পরিবর্তন করুণ
+            </a>
+          </Link>
         </div>
       </form>
     </DashPage>
