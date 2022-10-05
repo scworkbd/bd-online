@@ -8,6 +8,7 @@ const Deposit: NextPage = () => {
 
   return (
     <DashPage hideFooter>
+      <h1 className="text-2xl font-bold text-center mt-10 mb-5">ডিপোজিট</h1>
       <div className="grid grid-cols-2 gap-5 mt-10 p-5">
         <div
           onClick={() => router.push("/user/deposit/bkash")}
