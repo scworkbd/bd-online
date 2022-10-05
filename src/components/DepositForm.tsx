@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react"
 import { toast } from "react-hot-toast"
 import { BiLoaderAlt } from "react-icons/bi"
 import CustomToast from "./CustomToast"
+import { useSettings } from "../hooks/useSettings"
 type Props = {
   method: "bkash" | "nagad" | "upay"
 }
@@ -17,6 +18,7 @@ type DepositInput = {
 const DepositForm = ({ method }: Props) => {
   const { data: session } = useSession()
   const { register, handleSubmit, reset } = useForm<DepositInput>()
+  const { data: settings } = useSettings()
 
   const { mutate, isLoading } = trpc.useMutation(["user.deposit"], {
     onSuccess: () => {
@@ -33,9 +35,13 @@ const DepositForm = ({ method }: Props) => {
   const deposit = (values: DepositInput) => {
     const amount = Number(values.amount) || 0
 
-    if (!amount || amount < 500) {
+    if (!settings) return
+
+    if (!amount || amount < settings?.min_deposit || amount > 25000) {
       return toast.custom(
-        <CustomToast message="সর্বনিম্ন ৫০০ টাকা ডিপোজিট করা যাবে" />
+        <CustomToast
+          message={`সর্বনিম্ন ${settings?.min_deposit} টাকা ডিপোজিট করা যাবে`}
+        />
       )
     }
 
@@ -52,7 +58,7 @@ const DepositForm = ({ method }: Props) => {
   return (
     <div className="mt-20">
       <p className="mt-10 text-xl font-bold text-center">
-        সর্বনিম্ন ডিপোজিট ৫০০ টাকা
+        {`সর্বনিম্ন ${settings?.min_deposit} টাকা ডিপোজিট করা যাবে`}
       </p>
 
       <form className="mt-3" onSubmit={handleSubmit(deposit)}>

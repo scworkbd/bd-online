@@ -89,6 +89,9 @@ model Settings {
     cashout_enabled    Boolean @default(true)
     cashout_notice     String? @default("Withdraw is disabled. Please try again after some time")
     app_download_link  String? @default("https://google.com")
+    min_withdraw       Int     @default(500)
+    max_withdraw       Int     @default(25000)
+    min_deposit        Int     @default(500)
 }
 
 model Packages {

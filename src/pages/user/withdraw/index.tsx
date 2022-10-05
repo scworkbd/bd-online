@@ -42,21 +42,6 @@ const Deposit: NextPage = () => {
     },
   })
 
-  const withDraws: { [key: string]: { min: number; max: number } } = {
-    bkash: {
-      min: 300,
-      max: 25000,
-    },
-    nagad: {
-      min: 300,
-      max: 25000,
-    },
-    upay: {
-      min: 300,
-      max: 25000,
-    },
-  }
-
   const [method, setMethod] = useState<"bkash" | "nagad" | "upay" | null>()
 
   const submitWithdrawal = (values: {
@@ -65,13 +50,15 @@ const Deposit: NextPage = () => {
   }) => {
     const amount = Number(values.amount) || 0
 
-    if (
-      //@ts-expect-error("can't be null")
-      amount < withDraws[method || "bkash"]?.min || //@ts-expect-error("can't be null")
-      amount > withDraws[method || "bkash"]?.max
-    ) {
+    if (!settings) return
+
+    console.log(amount, settings.min_withdraw)
+
+    if (amount < settings.min_withdraw || amount > settings.max_withdraw) {
       return toast.custom(
-        <CustomToast message="সর্বনিম্ন ৫০০ টাকা থেকে ২৫,০০০ পর্যন্ত ক্যাশ আউট করা যাবে" />
+        <CustomToast
+          message={`সর্বনিম্ন ${settings.min_withdraw} টাকা থেকে ${settings.max_withdraw} পর্যন্ত ক্যাশ আউট করা যাবে`}
+        />
       )
     }
 
@@ -82,9 +69,8 @@ const Deposit: NextPage = () => {
     }
 
     if (amount && method && account && settings) {
-      console.log((Number(values.amount) / 100) * settings.bkash_percentage)
       setWithData({
-        amount: Number(values.amount) || 300,
+        amount: Number(values.amount),
         mobile_number: values.mobile_number,
         method: method,
         fees:

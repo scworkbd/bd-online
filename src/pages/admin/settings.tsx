@@ -37,6 +37,11 @@ const SettingsPage = () => {
           Number(values.bkash_percentage) || settings?.bkash_percentage || 2,
         cashout_notice: values.cashout_notice || undefined,
         app_download_link: values.app_download_link || undefined,
+        min_withdraw:
+          Number(values.min_withdraw) || settings?.min_withdraw || 500,
+        min_deposit: Number(values.min_deposit) || settings?.min_deposit || 500,
+        max_withdraw:
+          Number(values.max_withdraw) || settings?.max_withdraw || 500,
       },
     })
   }
@@ -104,6 +109,33 @@ const SettingsPage = () => {
               type="number"
               placeholder="Withdraw Fees"
               {...register("bkash_percentage", { required: true })}
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label>Minimum Cash out</label>
+            <input
+              type="number"
+              placeholder="Minimum Cash out"
+              {...register("min_withdraw", { required: true })}
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label>Maximum Cash out</label>
+            <input
+              type="number"
+              placeholder="Maximum Cash out"
+              {...register("max_withdraw", { required: true })}
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label>Miimum Deposit</label>
+            <input
+              type="number"
+              placeholder="Minimum deposit"
+              {...register("min_deposit", { required: true })}
             />
           </div>
 
