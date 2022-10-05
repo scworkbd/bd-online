@@ -40,7 +40,7 @@ const DepositForm = ({ method }: Props) => {
     if (!amount || amount < settings?.min_deposit || amount > 25000) {
       return toast.custom(
         <CustomToast
-          message={`সর্বনিম্ন ${settings?.min_deposit} টাকা ডিপোজিট করা যাবে`}
+          message={`সর্বনিম্ন ${settings?.min_deposit} ও সর্বোচ্চ 25,000 টাকা ডিপোজিট করা যাবে`}
         />
       )
     }
@@ -58,7 +58,7 @@ const DepositForm = ({ method }: Props) => {
   return (
     <div className="mt-20">
       <p className="mt-10 text-xl font-bold text-center">
-        {`সর্বনিম্ন ${settings?.min_deposit} টাকা ডিপোজিট করা যাবে`}
+        {`সর্বনিম্ন ${settings?.min_deposit} ও সর্বোচ্চ 25,000 টাকা ডিপোজিট করা যাবে`}
       </p>
 
       <form className="mt-3" onSubmit={handleSubmit(deposit)}>

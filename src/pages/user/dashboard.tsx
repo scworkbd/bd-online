@@ -134,8 +134,10 @@ const Dashboard: NextPage = () => {
           >
             <BiBroadcast className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
             <h2 className="font-bold text-green-700 mb-3">কাজ বাকি</h2>
-            <p className="font-bold text-xl text-green-500">
-              {works ? `${works}/${pack ? pack.daily_limit : 0}` : 0}
+            <p className="font-bold text-green-500">
+              {pack
+                ? `${works || 0}/${pack.daily_limit}`
+                : "একাউন্ট এক্টিভ নেই"}
             </p>
           </div>
 

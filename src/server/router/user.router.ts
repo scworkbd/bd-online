@@ -177,6 +177,9 @@ export const userRouter = createRouter()
           userId: ctx.session?.user?.id as string,
           method: "referral",
         },
+        include: {
+          user: true
+        }
       })
 
       return deposits

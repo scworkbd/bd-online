@@ -1,3 +1,4 @@
+import moment from "moment"
 import React from "react"
 import DashPage from "../../../components/DashPage"
 import { useWithdraw } from "../../../hooks/useWithdraw"
@@ -22,6 +23,7 @@ const History = () => {
                 <th className="text-left px-5 py-3">ফিস</th>
                 <th className="text-left px-5 py-3">পেমেন্ট</th>
                 <th className="text-left px-5 py-3">স্টাটাস</th>
+                <th className="text-left px-5 py-3">সময়</th>
               </tr>
             </thead>
 
@@ -57,11 +59,11 @@ const History = () => {
                       </span>
                     )}
                   </td>
-                  {/* <td className="text-left px-5 py-3 whitespace-nowrap">
+                  <td className="text-left px-5 py-3 whitespace-nowrap">
                     {moment(withdraw.date.toISOString()).format(
                       "DD MMM, YYYY h:mm a"
                     )}
-                  </td> */}
+                  </td>
                 </tr>
               ))}
             </tbody>

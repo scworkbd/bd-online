@@ -177,7 +177,7 @@ const Deposit: NextPage = () => {
                         <div className="flex flex-col gap-3">
                           <input
                             type="text"
-                            placeholder="Amount"
+                            placeholder="টাকার পরিমান"
                             className="w-full rounded-full border-0 !bg-zinc-100 shadow-md"
                             {...register("amount", {
                               required: {
@@ -189,7 +189,7 @@ const Deposit: NextPage = () => {
 
                           <input
                             type="text"
-                            placeholder="Number"
+                            placeholder={`আপনার ${method} নাম্বার`}
                             className="w-full rounded-full border-0 !bg-zinc-100 shadow-md"
                             {...register("mobile_number", {
                               required: {

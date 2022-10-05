@@ -7,7 +7,7 @@ import { trpc } from "../../../utils/trpc"
 
 const Deposits = () => {
   const { data: deposits, refetch } = trpc.useQuery(["deposit.depositsWUser"])
-  const { mutate } = trpc.useMutation(["deposit.approveDeposit"], {
+  const { mutate, isLoading } = trpc.useMutation(["deposit.approveDeposit"], {
     onSuccess: () => {
       toast.success("Deposit Approved")
       refetch()
@@ -24,7 +24,7 @@ const Deposits = () => {
   const approveDeposit = (id: string) => {
     const conf = confirm("Are you sure?")
 
-    if (conf) {
+    if (conf && !isLoading) {
       mutate({
         depId: id,
       })
