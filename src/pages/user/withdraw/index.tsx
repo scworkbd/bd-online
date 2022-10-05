@@ -106,7 +106,7 @@ const Deposit: NextPage = () => {
         {!settings?.cashout_enabled && <span>{settings?.cashout_notice}</span>}
       </h1>
       {settings?.cashout_enabled && (
-        <div className="grid grid-cols-1 gap-5">
+        <div className="grid grid-cols-2 gap-5 mt-10 p-5">
           <div onClick={() => setMethod("bkash")} className="text-center">
             <div className="p-3 text-center">
               <Image
