@@ -131,7 +131,7 @@ const SettingsPage = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label>Miimum Deposit</label>
+            <label>Minimum Deposit</label>
             <input
               type="number"
               placeholder="Minimum deposit"
