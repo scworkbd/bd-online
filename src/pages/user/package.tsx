@@ -56,18 +56,18 @@ const Package = () => {
             <ul className="mt-5">
               <li className="flex items-center gap-2">
                 <BiCheck className="text-green-500 text-2xl" /> প্রতিদিনের
-                ভিডিওঃ {pack.daily_limit} টি
+                ভিডিও: {pack.daily_limit} টি
               </li>
               <li className="flex items-center gap-2">
-                <BiCheck className="text-green-500 text-2xl" /> প্রতি ক্লিকঃ{" "}
+                <BiCheck className="text-green-500 text-2xl" /> প্রতি ক্লিক:{" "}
                 {pack.per_click} টাকা
               </li>
               <li className="flex items-center gap-2">
                 <BiCheck className="text-green-500 text-2xl" /> প্রতিদিনের
-                ইনকামঃ {pack.daily_limit * pack.per_click} BDT
+                ইনকাম: {pack.daily_limit * pack.per_click} টাকা
               </li>
               <li className="flex items-center gap-2">
-                <BiCheck className="text-green-500 text-2xl" /> রেফারেল কমিশনঃ{" "}
+                <BiCheck className="text-green-500 text-2xl" /> রেফারেল কমিশন:{" "}
                 {(
                   (pack.price / 100) *
                   (settings ? settings?.referral_commision : 0)
@@ -75,7 +75,7 @@ const Package = () => {
                 টাকা
               </li>
               <li className="flex items-center gap-2">
-                <BiCheck className="text-green-500 text-2xl" /> মেয়াদঃ{" "}
+                <BiCheck className="text-green-500 text-2xl" /> মেয়াদ:{" "}
                 {pack.validity} দিন
               </li>
             </ul>
