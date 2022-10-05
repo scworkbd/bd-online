@@ -49,7 +49,7 @@ export const depositRouter = createRouter()
         },
       })
 
-      if (dep) {
+      if (dep && !dep.approved) {
         const user = await ctx.prisma.user.findUnique({
           where: {
             id: dep.user.id,
