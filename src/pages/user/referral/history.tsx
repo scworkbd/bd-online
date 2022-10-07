@@ -29,10 +29,10 @@ const History = () => {
               {deposits?.map((withdraw) => (
                 <tr key={withdraw.id} className="odd:bg-zinc-100">
                   <td className="text-left px-5 py-3">
-                    {withdraw.user.first_name} {withdraw.user.last_name}
+                    {withdraw.referrerFullName}
                   </td>
                   <td className="text-left px-5 py-3">
-                    {withdraw.user.username}
+                    {withdraw.referrerUsername}
                   </td>
                   <td className="text-left px-5 py-3">{withdraw.amount}</td>
                   <td className="text-left px-5 py-3 whitespace-nowrap">

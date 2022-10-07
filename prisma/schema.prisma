@@ -36,16 +36,18 @@ model User {
 }
 
 model Deposit {
-    id        String        @id @default(cuid())
-    user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-    amount    Float
-    method    DepositMethod
-    tnx_id    String        @unique
-    date      DateTime
-    pending   Boolean       @default(true)
-    approved  Boolean       @default(false)
-    userId    String
-    updatedAt DateTime?     @updatedAt
+    id               String        @id @default(cuid())
+    user             User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+    amount           Float
+    method           DepositMethod
+    tnx_id           String        @unique
+    date             DateTime
+    pending          Boolean       @default(true)
+    approved         Boolean       @default(false)
+    userId           String
+    updatedAt        DateTime?     @updatedAt
+    referrerUsername String?
+    referrerFullName String?
 }
 
 model Withdraw {

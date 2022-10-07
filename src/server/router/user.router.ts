@@ -177,9 +177,7 @@ export const userRouter = createRouter()
           userId: ctx.session?.user?.id as string,
           method: "referral",
         },
-        include: {
-          user: true
-        }
+        
       })
 
       return deposits
@@ -350,6 +348,8 @@ export const userRouter = createRouter()
               tnx_id: `ref_${user.username}_${Math.random() * 1000}`,
               method: "referral",
               date: new Date(),
+              referrerFullName: user.first_name + ' ' + user.last_name,
+              referrerUsername: user.username
             },
           })
         }
