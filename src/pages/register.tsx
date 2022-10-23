@@ -62,8 +62,8 @@ const Login: NextPage = () => {
     <div>
       <div className="max-w-lg mx-auto py-20 p-5">
         <div className="flex flex-col items-center justify-center">
-          <Image src="/logo.png" width={200} height={80} alt="logo" />
-          <p>ফর্ম টি পূরন করুণ</p>
+          <p className="text-3xl font-bold">Welcome Back!</p>
+          <p>Please fill the form</p>
         </div>
 
         <form
@@ -75,9 +75,9 @@ const Login: NextPage = () => {
               <input
                 type="text"
                 placeholder="নামের প্রথম অংশ"
-                className={`${
+                className={`border-2 ${
                   errors.first_name && "border-red-500"
-                } rounded-full`}
+                } border-2 !bg-white`}
                 {...register("first_name", {
                   required: true,
                 })}
@@ -88,9 +88,7 @@ const Login: NextPage = () => {
               <input
                 type="text"
                 placeholder="নামের দ্বিতীয় অংশ"
-                className={`${
-                  errors.last_name && "border-red-500"
-                } rounded-full`}
+                className={`border-2 ${errors.last_name && "border-red-500"}`}
                 {...register("last_name", {
                   required: true,
                 })}
@@ -102,7 +100,7 @@ const Login: NextPage = () => {
             <input
               type="email"
               placeholder="ইমেইল"
-              className={`${errors.email && "border-red-500"} rounded-full`}
+              className={`border-2 ${errors.email && "border-red-500"}`}
               {...register("email", {
                 required: true,
               })}
@@ -114,7 +112,7 @@ const Login: NextPage = () => {
               <input
                 type="text"
                 placeholder="মোবাইল নাম্বার"
-                className={`${errors.phone && "border-red-500"} rounded-full`}
+                className={`border-2 ${errors.phone && "border-red-500"}`}
                 {...register("phone", {
                   required: true,
                 })}
@@ -125,9 +123,7 @@ const Login: NextPage = () => {
               <input
                 type="text"
                 placeholder="ইউজারনেইম"
-                className={`${
-                  errors.username && "border-red-500"
-                } rounded-full`}
+                className={`border-2 ${errors.username && "border-red-500"}`}
                 {...register("username", {
                   required: true,
                 })}
@@ -140,9 +136,9 @@ const Login: NextPage = () => {
               <input
                 type="password"
                 placeholder="পাসওয়ার্ড"
-                className={`${
+                className={`border-2 ${
                   errors.password_hash && "border-red-500"
-                } rounded-full`}
+                }`}
                 {...register("password_hash", {
                   required: true,
                   minLength: 6,
@@ -154,9 +150,9 @@ const Login: NextPage = () => {
               <input
                 type="password"
                 placeholder="কনফার্ম পাসওয়ার্ড"
-                className={`${
+                className={`border-2 ${
                   errors.password_hash_again && "border-red-500"
-                } rounded-full`}
+                }`}
                 {...register("password_hash_again", {
                   validate: (value: string) => {
                     const values = getValues()
@@ -167,17 +163,17 @@ const Login: NextPage = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-3 mt-10">
             <button
               type="submit"
-              className="px-7 py-3 w-full bg-green-600 hover:bg-green-500 text-white flex items-center gap-2 justify-center rounded-full"
+              className="px-7 py-3 w-full bg-rose-600 hover:bg-rose-500 text-white flex items-center gap-2 justify-center"
             >
-              {loading && <BiLoaderAlt className="animate-spin" />}
               রেজিস্ট্রেশন করুণ
             </button>
-            <p className="text-center">Or</p>
             <Link href="/login">
-              <a className="text-center text-red-500">লগিন</a>
+              <a className="text-center border-2 border-rose-600 py-3 hover:bg-rose-600 hover:text-white">
+                লগিন
+              </a>
             </Link>
           </div>
         </form>

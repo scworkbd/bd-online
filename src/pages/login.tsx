@@ -45,19 +45,19 @@ const Login: NextPage = () => {
     <div>
       <div className="max-w-lg mx-auto py-20 p-5">
         <div className="flex flex-col items-center justify-center">
-          <Image src="/logo.png" width={200} height={80} alt="logo" />
-          <p>স্বাগতম</p>
+          <p className="text-3xl font-bold">Welcome Back!</p>
+          <p>Login to continue</p>
         </div>
 
         <form
           onSubmit={handleSubmit(login)}
           className="flex flex-col gap-4 mt-10"
         >
-          <div className="flex items-center gap-1 py-2 px-5 bg-zinc-300 rounded-full ">
-            <BiUser />
+          <div className="flex">
             <input
               type="text"
-              className="w-full !bg-transparent !border-0 !outline-none !ring-0"
+              className="border-2 border-rose-600
+               w-full !bg-transparent !outline-none !ring-0"
               placeholder="ইউজারনেইম"
               {...register("username", {
                 required: {
@@ -66,14 +66,17 @@ const Login: NextPage = () => {
                 },
               })}
             />
+            <div className="bg-rose-600 text-white h-full p-3">
+              <BiUser className="text-2xl" />
+            </div>
           </div>
 
-          <div className="flex items-center gap-1 py-2 px-5 bg-zinc-300 rounded-full">
-            <BiLockAlt />
+          <div className="flex">
             <input
               type="password"
               placeholder="পাসওয়ার্ড"
-              className="w-full !bg-transparent !border-0 !outline-0 !ring-0"
+              className="border-2 border-rose-600
+               w-full !bg-transparent !outline-none !ring-0"
               {...register("password", {
                 required: {
                   value: true,
@@ -85,19 +88,23 @@ const Login: NextPage = () => {
                 },
               })}
             />
+            <div className="bg-rose-600 text-white h-full p-3">
+              <BiLockAlt className="text-2xl" />
+            </div>
           </div>
 
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-3 mt-10">
             <button
               type="submit"
-              className="px-7 py-3 w-full bg-green-600 hover:bg-green-500 text-white flex items-center gap-2 justify-center rounded-full"
+              className="px-7 py-3 w-full bg-rose-600 text-white flex items-center gap-2 justify-center"
             >
               {loading && <BiLoaderAlt className="animate-spin" />}
-              লগিন করুণ
+              লগিন
             </button>
-            <p className="text-center">Or</p>
             <Link href="/register">
-              <a className="text-center text-red-500">রেজিস্ট্রেশন</a>
+              <a className="px-7 py-3 w-full border-2 border-rose-600 text-red-600 hover:text-white hover:bg-rose-600 flex items-center gap-2 justify-center">
+                রেজিস্ট্রেশন
+              </a>
             </Link>
           </div>
         </form>
