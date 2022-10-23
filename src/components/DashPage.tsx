@@ -3,13 +3,13 @@ import Link from "next/link"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/router"
 
-import { BiDownload } from "react-icons/bi"
 import { signIn, signOut } from "next-auth/react"
 
 import Loading from "./Loading"
 import { trpc } from "../utils/trpc"
-import Image from "next/dist/client/image"
-import { GoHome, GoPackage, GoSignOut } from "react-icons/go"
+import { TbPackage } from "react-icons/tb"
+import { BiHomeSmile } from "react-icons/bi"
+import { AiOutlineApi } from "react-icons/ai"
 
 type Props = {
   children?: React.ReactNode | React.ReactNode[]
@@ -59,7 +59,7 @@ const DashPage = ({ children }: Props) => {
 
   return (
     <div className="max-w-lg mx-auto">
-      <header className="h-14 px-5 fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg flex items-center gap-5 z-20 bg-white shadow-md">
+      {/* <header className="h-14 px-5 fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg flex items-center gap-5 z-20 bg-white shadow-md">
         <div className="flex items-center justify-center">
           <Link href="/user/dashboard">
             <Image src="/logo.png" width={100} height={30} alt="logo" />
@@ -94,34 +94,34 @@ const DashPage = ({ children }: Props) => {
             </a>
           )}
         </div>
-      </header>
+      </header> */}
 
       <div className="pt-14 pb-32">
         <div>{children}</div>
       </div>
 
-      <div className="px-10 py-5 flex items-center justify-evenly fixed bottom-0 left-0 w-full bg-white shadow-md border-t-2 border-emerald-600">
-        <Link href="/user/package">
-          <a className="flex flex-col gap-2 items-center">
-            <GoPackage className="text-2xl" />
-            <span className="text-xs">প্যাকেজ</span>
-          </a>
-        </Link>
-
-        <Link href="/user/dashboard">
-          <a className="flex flex-col gap-2 items-center">
-            <GoHome className="text-2xl" />
-            <span className="text-xs">হোম</span>
-          </a>
-        </Link>
-
-        <p
-          onClick={() => signOut()}
-          className="flex flex-col gap-2 items-center"
-        >
-          <GoSignOut className="text-2xl" />
-          <span className="text-xs">লগ আউট</span>
-        </p>
+      <div className="px-10 pb-3 flex fixed bottom-0 left-0 w-full">
+        <div className="rounded-full bg-rose-600 text-white flex items-center justify-evenly gap-2 w-full py-2">
+          <Link href="/user/package">
+            <a className="flex flex-col gap-1 items-center">
+              <TbPackage className="text-xl" />
+              <span className="text-[8px]">প্যাকেজ</span>
+            </a>
+          </Link>
+          <Link href="/user/dashboard">
+            <a className="flex flex-col gap-1 items-center">
+              <BiHomeSmile className="text-xl" />
+              <span className="text-[8px]">হোম</span>
+            </a>
+          </Link>
+          <p
+            onClick={() => signOut()}
+            className="flex flex-col gap-1 items-center"
+          >
+            <AiOutlineApi className="text-xl" />
+            <span className="text-[8px]">লগআউট</span>
+          </p>
+        </div>
       </div>
     </div>
   )

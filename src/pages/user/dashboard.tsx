@@ -13,7 +13,15 @@ import Balance from "../../components/Balance"
 import DashPage from "../../components/DashPage"
 
 import { HiOutlineCash, HiCash, HiUserGroup, HiUser } from "react-icons/hi"
-import { BiBroadcast, BiBox, BiKey } from "react-icons/bi"
+import {
+  BiBroadcast,
+  BiBox,
+  BiKey,
+  BiTransfer,
+  BiPlus,
+  BiUserPlus,
+  BiUser,
+} from "react-icons/bi"
 import { AiOutlineWhatsApp } from "react-icons/ai"
 import { FaTelegramPlane } from "react-icons/fa"
 
@@ -54,61 +62,41 @@ const Dashboard: NextPage = () => {
   return (
     <DashPage>
       <Balance />
-      <div className="p-5 mt-5">
-        <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-4 gap-3 p-5">
+        <div className="flex flex-col gap-2 items-center justify-center">
           <Link href="/user/deposit">
-            <div className="flex flex-col items-center gap-2">
-              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
-                <HiOutlineCash className="tp:text-3xl text-green-500" />
-              </div>
-              <p className="text-xs">ডিপোজিট</p>
-            </div>
+            <a className="bg-rose-500 p-2 rounded-full">
+              <BiPlus className="text-3xl text-white" />
+            </a>
           </Link>
+          <span className="text-[10px]">ডিপোজিট</span>
+        </div>
 
-          <Link href="/user/withdraw">
-            <div className="flex flex-col items-center gap-2">
-              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
-                <HiCash className="text-xl tp:text-3xl text-green-500" />
-              </div>
-              <p className="text-xs text-center">ক্যাশ আউট</p>
-            </div>
+        <div className="flex flex-col gap-2 items-center justify-center">
+          <Link href="/user/deposit">
+            <a className="bg-rose-500 p-2 rounded-full">
+              <BiTransfer className="text-3xl text-white" />
+            </a>
           </Link>
+          <span className="text-[10px]">ক্যাশআউট</span>
+        </div>
 
-          <Link href="/user/referral">
-            <div className="flex flex-col items-center gap-2">
-              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
-                <HiUserGroup className="tp:text-3xl text-green-500" />
-              </div>
-              <p className="text-xs">রেফার</p>
-            </div>
+        <div className="flex flex-col gap-2 items-center justify-center">
+          <Link href="/user/deposit">
+            <a className="bg-rose-500 p-2 rounded-full">
+              <BiUserPlus className="text-3xl text-white" />
+            </a>
           </Link>
+          <span className="text-[10px]">রেফার</span>
+        </div>
 
-          <Link href="/user/profile">
-            <div className="flex flex-col items-center gap-2">
-              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
-                <HiUser className="tp:text-3xl text-green-500" />
-              </div>
-              <p className="text-xs">প্রোফাইল</p>
-            </div>
+        <div className="flex flex-col gap-2 items-center justify-center">
+          <Link href="/user/deposit">
+            <a className="bg-rose-500 p-2 rounded-full">
+              <BiUser className="text-3xl text-white" />
+            </a>
           </Link>
-
-          <Link href={`https://wa.me/${settings?.whatsapp_number}`}>
-            <div className="flex flex-col items-center gap-2">
-              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
-                <AiOutlineWhatsApp className="tp:text-3xl text-green-500" />
-              </div>
-              <p className="text-xs">হোয়াটসঅ্যাপ</p>
-            </div>
-          </Link>
-
-          <a href={settings?.telegram_link}>
-            <div className="flex flex-col items-center gap-2">
-              <div className="bg-green-500/20 grid place-items-center aspect-square rounded-full p-4 tp:p-5">
-                <FaTelegramPlane className="tp:text-3xl text-green-500" />
-              </div>
-              <p className="text-xs">টেলিগ্রাম</p>
-            </div>
-          </a>
+          <span className="text-[10px]">প্রোফাইল</span>
         </div>
       </div>
 
