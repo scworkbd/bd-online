@@ -101,70 +101,71 @@ const Dashboard: NextPage = () => {
       </div>
 
       <div className="mt-5 p-5">
-        <div className="grid grid-cols-2 gap-5">
-          <div className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20">
-            <BiBox className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
-            <h2 className="font-bold text-green-700 mb-3">প্যাকেজ</h2>
-            <p className="font-bold text-green-500 text-sm">
+        <div className="grid grid-cols-1 gap-5">
+          <div className="p-5 bg-gradient-to-r from-rose-700 to-rose-400 rounded-md text-white">
+            <h2 className="font-bold mb-3 text-xl">বর্তমান প্যাকেজ</h2>
+            <p className="text-sm">
               {pack ? (
                 pack.name
               ) : (
-                <span onClick={() => router.push("/user/package")}>
-                  প্যাকেজ কিনতে এখানে ক্লিক করুণ
-                </span>
+                <>
+                  <span className="text-xs mt-3 mb-2 block font-bold">
+                    কোন প্যাকেজ একটিভ নেই
+                  </span>
+                  <Link href="/user/package">
+                    <a className="text-xs px-5 py-3 bg-white text-black rounded-full block w-max">
+                      প্যাকেজ কিনুন
+                    </a>
+                  </Link>
+                </>
               )}
             </p>
           </div>
 
           <div
-            className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20"
+            className="p-5 bg-gradient-to-r from-rose-700 to-rose-400 rounded-md text-white"
             onClick={() => router.push("/user/ptc")}
           >
-            <BiBroadcast className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
-            <h2 className="font-bold text-green-700 mb-3">কাজ বাকি</h2>
-            <p className="font-bold text-green-500">
+            <h2 className="font-bold text-xl mb-3">কাজ বাকি</h2>
+            <p className="font-bold text-xs">
               {pack
                 ? `${works || 0}/${pack.daily_limit}`
-                : "একাউন্ট এক্টিভ নেই"}
+                : "প্যাকেজ কিনে কাজ শুরু করুণ"}
             </p>
           </div>
 
           <div
             onClick={() => router.push("/user/withdraw/history")}
-            className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20"
+            className="p-5 bg-gradient-to-r from-rose-700 to-rose-400 rounded-md text-white"
           >
-            <HiCash className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
-            <h2 className="font-bold text-green-700 mb-3">ক্যাশ আউট ইতিহাস</h2>
-            <p className="font-bold text-xl text-green-500">{totalWithdraw}</p>
+            <h2 className="font-bold text-xl">ক্যাশ আউট ইতিহাস</h2>
+            <p className="font-bold text-lg mt-3">{totalWithdraw}</p>
           </div>
 
           <div
             onClick={() => router.push("/user/deposit/history")}
-            className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20"
+            className="p-5 bg-gradient-to-r from-rose-700 to-rose-400 rounded-md text-white"
           >
-            <HiOutlineCash className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
-            <h2 className="font-bold text-green-700 mb-3">ডিপোজিট ইতিহাস</h2>
-            <p className="font-bold text-xl text-green-500">{totalDeposit}</p>
+            <h2 className="font-bold text-xl">ডিপোজিট ইতিহাস</h2>
+            <p className="font-bold text-lg mt-3">{totalDeposit}</p>
           </div>
 
-          <div
-            className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20"
-            onClick={() => router.push("/user/referral/history")}
-          >
-            <HiUserGroup className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
-            <h2 className="font-bold text-green-700 mb-3">রেরাফেল ইতিহাস</h2>
-            <p className="font-bold text-sm text-green-500">এখানে ক্লিক করুণ</p>
+          <div className="p-5 bg-gradient-to-r from-rose-700 to-rose-400 rounded-md text-white">
+            <h2 className="font-bold text-xl mb-3">রেরাফেল ইতিহাস</h2>
+            <Link href="/user/referral/history">
+              <a className="text-xs px-5 py-3 bg-white text-black rounded-full block w-max">
+                এখানে ক্লিক করুন
+              </a>
+            </Link>
           </div>
 
-          <div
-            className="shadow-md p-5 isolate relative overflow-hidden border-2 border-green-600/20"
-            onClick={() => router.push("/user/chpwd")}
-          >
-            <BiKey className="text-7xl text-green-500/20 absolute -bottom-3 -right-3 -rotate-45" />
-            <h2 className="font-bold text-green-700 mb-3">
-              পাসওয়ার্ড পরিবর্তন
-            </h2>
-            <p className="font-bold text-sm text-green-500">এখানে ক্লিক করুণ</p>
+          <div className="p-5 bg-gradient-to-r from-rose-700 to-rose-400 rounded-md text-white">
+            <h2 className="font-bold text-xl mb-3">পাসওয়ার্ড পরিবর্তন</h2>
+            <Link href="/user/chpwd">
+              <a className="text-xs px-5 py-3 bg-white text-black rounded-full block w-max">
+                এখানে ক্লিক করুন
+              </a>
+            </Link>
           </div>
         </div>
       </div>

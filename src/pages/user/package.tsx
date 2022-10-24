@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react"
 import DashPage from "../../components/DashPage"
 
 import { Dialog, Transition } from "@headlessui/react"
-import { BiCheck, BiLoaderAlt } from "react-icons/bi"
+import { BiCheck, BiLoaderAlt, BiPackage } from "react-icons/bi"
 import { trpc } from "../../utils/trpc"
 import { toast } from "react-hot-toast"
 import { useRouter } from "next/router"
@@ -43,49 +43,34 @@ const Package = () => {
       <div className="grid grid-cols-1 gap-5 p-10">
         {packages?.map((pack) => (
           <div
-            className="p-10 bg-[url('/packbg.jpg')] bg-zinc-100 border-2 rounded-md shadow-md bg-cover bg-center"
+            className="p-10 bg-gradient-to-r from-rose-500 to-rose-400 border-2 rounded-md shadow-md bg-cover bg-center"
             key={pack.id}
           >
-            <div className="flex items-center justify-between">
-              <h2 className="text-center font-bold text-3xl text-green-500">
-                {pack.name}
-              </h2>
-              <h2 className="text-center text-lg">{pack.price} টাকা</h2>
+            <h1 className="flex items-center justify-center">
+              <BiPackage className="text-5xl text-white" />
+            </h1>
+
+            <h2 className="text-3xl font-bold text-center text-rose-100 mt-3">
+              {pack.name}
+            </h2>
+
+            <div className="rounded-md px-10 py-3 bg-rose-900 text-white text-2xl text-center w-max mx-auto mt-4">
+              {pack.price} tk
             </div>
 
-            <ul className="mt-5">
-              <li className="flex items-center gap-2">
-                <BiCheck className="text-green-500 text-2xl" /> প্রতিদিনের
-                ভিডিও: {pack.daily_limit} টি
-              </li>
-              <li className="flex items-center gap-2">
-                <BiCheck className="text-green-500 text-2xl" /> প্রতি ক্লিক:{" "}
-                {pack.per_click} টাকা
-              </li>
-              <li className="flex items-center gap-2">
-                <BiCheck className="text-green-500 text-2xl" /> প্রতিদিনের
-                ইনকাম: {pack.daily_limit * pack.per_click} টাকা
-              </li>
-              <li className="flex items-center gap-2">
-                <BiCheck className="text-green-500 text-2xl" /> রেফারেল কমিশন:{" "}
+            <ul className="text-center mt-10 text-white text-xl">
+              <li>Daily Ads: {pack.daily_limit}</li>
+              <li>Per Click: {pack.per_click} tk</li>
+              <li>
+                Refer Bonus:{" "}
                 {(
                   (pack.price / 100) *
                   (settings ? settings?.referral_commision : 0)
-                ).toFixed(2)}{" "}
-                টাকা
+                ).toFixed(0)}{" "}
+                tk
               </li>
-              <li className="flex items-center gap-2">
-                <BiCheck className="text-green-500 text-2xl" /> মেয়াদ:{" "}
-                {pack.validity} দিন
-              </li>
+              <li>Expire: {pack.validity} day</li>
             </ul>
-
-            <button
-              onClick={() => setSelPack(pack)}
-              className="px-5 py-3 bg-green-500 hover:bg-green-600 text-white mt-5 w-full rounded-full "
-            >
-              বিনিয়োগ করুণ
-            </button>
           </div>
         ))}
       </div>
