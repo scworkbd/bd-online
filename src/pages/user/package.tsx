@@ -13,9 +13,11 @@ import { useSettings } from "../../hooks/useSettings"
 import CustomToast from "../../components/CustomToast"
 
 import { trpc } from "../../utils/trpc"
+import { useAccount } from "../../hooks/useAccount"
 
 const Package = () => {
   const [selPack, setSelPack] = useState<Packages | null>(null)
+  const { data: account } = useAccount()
   const { data: settings } = useSettings()
   const { data: packages } = trpc.useQuery(["admin.packages"])
   const router = useRouter()
@@ -26,9 +28,13 @@ const Package = () => {
       router.push("/user/dashboard")
     },
     onError: () => {
-      toast.custom(
-        <CustomToast message="আপনার পর্যাপ্ত পরিমানে ব্যালেন্স নেই" />
-      )
+      if (account?.current_pack) {
+        toast.custom(<CustomToast message="ইতমধ্যে একটি প্যাক চালু আছে" />)
+      } else {
+        toast.custom(
+          <CustomToast message="আপনার পর্যাপ্ত পরিমানে ব্যালেন্স নেই" />
+        )
+      }
     },
   })
 

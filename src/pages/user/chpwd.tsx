@@ -36,18 +36,20 @@ const ChPWD = () => {
 
   return (
     <DashPage>
+      <h1 className="text-3xl font-bold text-center text-rose-600">
+        পাসওয়ার্ড পরিবর্তন
+      </h1>
+
       <form
         onSubmit={handleSubmit(updateUser)}
         className="flex flex-col gap-4 mt-5 p-5"
       >
         <div className="flex flex-col gap-1">
-          <label htmlFor="old_pass">আগের পাসওয়ার্ড</label>
+          <label htmlFor="old_pass">পূর্বের পাসওয়ার্ড</label>
 
           <input
             type="password"
-            className={`${
-              errors.old_pass && "border-red-500"
-            } !bg-white shadow-md rounded-full border-2 !border-zinc-200`}
+            className="border-2 border-rose-600"
             {...register("old_pass", {
               required: true,
               minLength: 6,
@@ -60,9 +62,7 @@ const ChPWD = () => {
 
           <input
             type="password"
-            className={`${
-              errors.new_pass && "border-red-500"
-            } !bg-white shadow-md rounded-full border-2 !border-zinc-200`}
+            className="border-2 border-rose-600"
             {...register("new_pass", {
               required: true,
               minLength: 6,
@@ -75,9 +75,7 @@ const ChPWD = () => {
 
           <input
             type="password"
-            className={`${
-              errors.new_pass_conf && "border-red-500"
-            } !bg-white shadow-md rounded-full border-2 !border-zinc-200`}
+            className="border-2 border-rose-600"
             {...register("new_pass_conf", {
               validate: (value: string) => {
                 const values = getValues()
@@ -87,8 +85,8 @@ const ChPWD = () => {
           />
         </div>
 
-        <div>
-          <button className="px-7 py-3 bg-green-500 w-full rounded-full text-white text-center flex items-center justify-center gap-2">
+        <div className="mt-5">
+          <button className="px-7 py-3 bg-rose-600 w-full text-white text-center flex items-center justify-center gap-2">
             {isLoading && <BiLoaderAlt />}
             Update Password
           </button>
