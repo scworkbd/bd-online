@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react"
 import DashPage from "../../components/DashPage"
 
 import { Dialog, Transition } from "@headlessui/react"
-import { BiCheck, BiLoaderAlt, BiPackage } from "react-icons/bi"
+import { BiChevronRight, BiLoaderAlt, BiPackage } from "react-icons/bi"
 import { trpc } from "../../utils/trpc"
 import { toast } from "react-hot-toast"
 import { useRouter } from "next/router"
@@ -40,10 +40,11 @@ const Package = () => {
 
   return (
     <DashPage hideFooter>
-      <div className="grid grid-cols-1 gap-5 p-10">
+      <h1 className="text-3xl font-bold text-center">প্যাকেজ সমুহ</h1>
+      <div className="grid grid-cols-1 gap-5 p-5">
         {packages?.map((pack) => (
           <div
-            className="p-10 bg-gradient-to-r from-rose-500 to-rose-400 border-2 rounded-md shadow-md bg-cover bg-center"
+            className="p-8 bg-gradient-to-r from-rose-500 to-rose-400 border-2 rounded-md shadow-md bg-cover bg-center"
             key={pack.id}
           >
             <h1 className="flex items-center justify-center">
@@ -71,6 +72,15 @@ const Package = () => {
               </li>
               <li>Expire: {pack.validity} day</li>
             </ul>
+
+            <div className="flex items-center justify-center mt-5">
+              <button
+                onClick={() => setSelPack(pack)}
+                className="bg-white hover:bg-slate-100 text-black rounded-full flex items-center gap-2 px-5 py-2 text-sm"
+              >
+                Activate <BiChevronRight className="text-xl" />
+              </button>
+            </div>
           </div>
         ))}
       </div>
@@ -94,7 +104,7 @@ const Package = () => {
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <div className="flex min-h-full items-end justify-center p-4 text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -104,7 +114,7 @@ const Package = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-green-400 rounded-lg p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-rose-900 p-6 text-left align-middle shadow-xl transition-all text-white">
                   <Dialog.Title
                     as="h3"
                     className="text-xl font-medium leading-6 inline-flex justify-between items-center w-full"
@@ -118,7 +128,7 @@ const Package = () => {
                       <button
                         type="button"
                         onClick={() => startPackage()}
-                        className="inline-flex gap-2 justify-center items-center bg-green-900 rounded-full px-5 py-2 text-sm font-medium text-white hover:bg-zinc-700"
+                        className="inline-flex gap-2 justify-center items-center bg-rose-600 px-5 py-2 text-sm font-medium text-white"
                       >
                         {isLoading && <BiLoaderAlt className="animate-spin" />}
                         বিনিয়োগ করুণ
@@ -126,7 +136,7 @@ const Package = () => {
 
                       <button
                         type="button"
-                        className="inline-flex gap-2 justify-center items-center bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 rounded-full"
+                        className="inline-flex gap-2 justify-center items-center bg-rose-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600"
                         onClick={() => setSelPack(null)}
                       >
                         বাতিল
