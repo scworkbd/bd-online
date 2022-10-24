@@ -1,14 +1,18 @@
 import React, { Fragment, useState } from "react"
-import DashPage from "../../components/DashPage"
 
-import { Dialog, Transition } from "@headlessui/react"
-import { BiChevronRight, BiLoaderAlt, BiPackage } from "react-icons/bi"
-import { trpc } from "../../utils/trpc"
-import { toast } from "react-hot-toast"
 import { useRouter } from "next/router"
+
+import { toast } from "react-hot-toast"
 import { Packages } from "@prisma/client"
+import { Dialog, Transition } from "@headlessui/react"
+
+import { BiChevronRight, BiLoaderAlt, BiPackage } from "react-icons/bi"
+
+import DashPage from "../../components/DashPage"
 import { useSettings } from "../../hooks/useSettings"
 import CustomToast from "../../components/CustomToast"
+
+import { trpc } from "../../utils/trpc"
 
 const Package = () => {
   const [selPack, setSelPack] = useState<Packages | null>(null)

@@ -7,7 +7,7 @@ const CustomToast = ({ message, success }: Props) => {
   return (
     <div
       className="
-        px-5 py-3 rounded-full flex 
+        px-5 py-3 flex 
         items-center gap-2 bg-rose-500 text-white
       "
     >
