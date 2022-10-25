@@ -21,7 +21,7 @@ const History = () => {
               <p className="text-lg font-bold">{withdraw.tnx_id}</p>
               <div>{withdraw.method}</div>
               <div className="text-rose-500 text-xl mt-5">
-                {withdraw.amount}
+                {withdraw.amount} tk
               </div>
               <div className="absolute top-5 right-5">
                 {withdraw.pending ? (
