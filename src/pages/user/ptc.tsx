@@ -35,26 +35,29 @@ const Dashboard: NextPage = () => {
   return (
     <DashPage>
       <div className="overflow-y-auto">
-        <table className="w-full">
-          <tbody>
-            {ads?.map((ad) => (
-              <tr key={ad.videoId} className="shadow-lg">
-                <td className="px-3 py-3">ভিডিও</td>
-                <td className="px-2 py-3 whitespace-nowrap">
+        <h1 className="text-2xl font-bold text-rose-900 text-center mb-5">
+          কাজ সমুহ
+        </h1>
+        <div className="flex flex-col gap-3">
+          {ads?.map((ad) => (
+            <div key={ad.videoId} className="bg-zinc-200 p-5 rounded-md">
+              <div className="flex items-center justify-between">
+                <div className="px-3 py-3">ভিডিও</div>
+                <div className="px-2 py-3 whitespace-nowrap">
                   {pack ? pack.per_click : "..."} টাকা
-                </td>
-                <td className="px-2 py-3 whitespace-nowrap">
-                  <button
-                    onClick={() => showAds()}
-                    className="px-5 py-2 bg-green-500 text-white rounded-full text-xs"
-                  >
-                    দেখুন
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+              </div>
+              <div className="px-2 py-3 whitespace-nowrap">
+                <button
+                  onClick={() => showAds()}
+                  className="px-5 py-3 bg-rose-900 w-full text-white text-xs"
+                >
+                  দেখুন
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </DashPage>
   )
