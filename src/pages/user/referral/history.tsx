@@ -9,41 +9,28 @@ const History = () => {
   return (
     <DashPage hideFooter>
       <div className="p-5">
-        <h1 className="text-2xl font-bold my-5">রেফারেল ইনকাম</h1>
+        <h1 className="text-2xl font-bold mb-5 text-center">রেফারেল ইনকাম</h1>
         <div className="w-full overflow-y-auto">
-          <table className="max-w-full text-xs w-full">
-            <thead>
-              <tr className="bg-white overflow-hidden border-2">
-                <th className="text-left px-5 py-3 whitespace-nowrap">
-                  সম্পুর্ন নাম
-                </th>
-                <th className="text-left px-5 py-3 whitespace-nowrap">
-                  ইউজারনেম
-                </th>
-                <th className="text-left px-5 py-3">পরিমান</th>
-                <th className="text-left px-5 py-3">সময়</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {deposits?.map((withdraw) => (
-                <tr key={withdraw.id} className="odd:bg-zinc-100">
-                  <td className="text-left px-5 py-3">
-                    {withdraw.referrerFullName}
-                  </td>
-                  <td className="text-left px-5 py-3">
-                    {withdraw.referrerUsername}
-                  </td>
-                  <td className="text-left px-5 py-3">{withdraw.amount}</td>
-                  <td className="text-left px-5 py-3 whitespace-nowrap">
-                    {moment(withdraw.date.toISOString()).format(
-                      "DD MMM, YYYY h:mm a"
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div>
+            {deposits?.map((withdraw) => (
+              <div key={withdraw.id} className="bg-zinc-200 p-5 rounded-md">
+                <div className="text-left text-xl font-bold">
+                  {withdraw.referrerFullName}
+                </div>
+                <div className="text-left text-xs">
+                  ইউজারনেইম - {withdraw.referrerUsername}
+                </div>
+                <div className="text-left text-rose-500 text-2xl mt-5">
+                  {withdraw.amount} tk
+                </div>
+                <div className="text-left text-zinc-600 mt-2">
+                  {moment(withdraw.date.toISOString()).format(
+                    "DD MMM, YYYY h:mm a"
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </DashPage>

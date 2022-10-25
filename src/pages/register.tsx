@@ -33,10 +33,8 @@ const Login: NextPage = () => {
   } = useForm<Credentials>()
 
   const { mutate } = trpc.useMutation(["user.register"], {
-    onError: () => {
-      toast.custom(
-        <CustomToast message="রেজিস্ট্রেশন সফল হয়নি, আবার চেষ্টা করুণ" />
-      )
+    onError: (error) => {
+      toast.custom(<CustomToast message={error.message} />)
       setLoading(false)
     },
     onSuccess: () => {

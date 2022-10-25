@@ -110,9 +110,12 @@ const Deposit: NextPage = () => {
         )}
       </h1>
       {settings?.cashout_enabled && (
-        <div className="grid grid-cols-2 gap-5 mt-10 p-5">
-          <div onClick={() => setMethod("bkash")} className="text-center">
-            <div className="p-3 text-center">
+        <div className="grid grid-cols-1 gap-5 mt-10 p-5">
+          <div
+            onClick={() => setMethod("bkash")}
+            className="flex items-center justify-center bg-zinc-300 p-5 gap-5 rounded-lg"
+          >
+            <div>
               <Image
                 src="/icons/bkash.png"
                 width={100}
@@ -120,10 +123,15 @@ const Deposit: NextPage = () => {
                 alt="bkash"
               />
             </div>
+
+            <p className="text-2xl font-bold uppercase">বিকাশ</p>
           </div>
 
-          <div onClick={() => setMethod("nagad")} className="text-center">
-            <div className="p-3 text-center">
+          <div
+            onClick={() => setMethod("nagad")}
+            className="flex items-center justify-center bg-zinc-300 p-5 gap-5 rounded-lg"
+          >
+            <div>
               <Image
                 src="/icons/nagad.png"
                 width={100}
@@ -131,6 +139,8 @@ const Deposit: NextPage = () => {
                 alt="bkash"
               />
             </div>
+
+            <p className="text-2xl font-bold uppercase">নগদ</p>
           </div>
         </div>
       )}
@@ -158,7 +168,7 @@ const Deposit: NextPage = () => {
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <div className="flex min-h-full items-end justify-center p-4 text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -168,7 +178,7 @@ const Deposit: NextPage = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-white rounded-md p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-rose-100 border-2 border-rose-300 p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-xl font-medium leading-6 text-gray-900 flex items-center justify-between"
@@ -182,7 +192,7 @@ const Deposit: NextPage = () => {
                           <input
                             type="text"
                             placeholder="টাকার পরিমান"
-                            className="w-full rounded-full border-0 !bg-zinc-100 shadow-md"
+                            className="w-full border-2 border-rose-600 bg-rose-100 shadow-md"
                             {...register("amount", {
                               required: {
                                 value: true,
@@ -194,7 +204,7 @@ const Deposit: NextPage = () => {
                           <input
                             type="text"
                             placeholder={`আপনার ${method} নাম্বার`}
-                            className="w-full rounded-full border-0 !bg-zinc-100 shadow-md"
+                            className="w-full border-2 border-rose-600 bg-rose-100 shadow-md"
                             {...register("mobile_number", {
                               required: {
                                 value: true,
@@ -206,14 +216,14 @@ const Deposit: NextPage = () => {
                         <div className="mt-4 flex items-center gap-2">
                           <button
                             type="submit"
-                            className="bg-green-500 px-4 py-2 text-sm text-white hover:bg-green-600 rounded-full "
+                            className="bg-rose-500 px-4 py-2 text-sm text-white hover:bg-rose-600 border-2 border-rose-500"
                           >
                             পরবর্তি ধাপ
                           </button>
 
                           <button
                             type="button"
-                            className="inline-flex justify-center border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 rounded-full"
+                            className="inline-flex justify-center border-2 text-rose-600 border-rose-500 px-4 py-2 text-sm"
                             onClick={() => {
                               setMethod(null)
                               setWithData(undefined)
@@ -241,7 +251,7 @@ const Deposit: NextPage = () => {
                           <button
                             type="button"
                             onClick={() => executeWithdraw()}
-                            className="bg-green-500 px-4 py-2 text-sm text-white hover:bg-green-600 rounded-full"
+                            className="bg-rose-500 px-4 py-2 text-sm text-white hover:bg-rose-600 border-2 border-rose-500"
                           >
                             {wLoading && (
                               <BiLoaderAlt className="animate-spin" />
@@ -251,7 +261,7 @@ const Deposit: NextPage = () => {
 
                           <button
                             type="button"
-                            className="rounded-full inline-flex justify-center border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 "
+                            className="inline-flex justify-center border-2 text-rose-600 border-rose-500 px-4 py-2 text-sm"
                             onClick={() => setWithData(undefined)}
                           >
                             বাতিল

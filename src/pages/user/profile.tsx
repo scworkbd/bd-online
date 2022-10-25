@@ -48,6 +48,9 @@ const ChPWD = () => {
   }, [account, reset])
   return (
     <DashPage>
+      <h1 className="text-2xl font-bold text-center text-rose-900">
+        আপডেট প্রোফাইল
+      </h1>
       <form
         onSubmit={handleSubmit(updateUser)}
         className="flex flex-col gap-4 mt-5 p-5"
@@ -57,9 +60,7 @@ const ChPWD = () => {
             <label htmlFor="first_name">নামের প্রথম অংশ</label>
             <input
               type="text"
-              className={`${
-                errors.first_name && "border-red-500"
-              } rounded-full !bg-zinc-100 border-none shadow-md`}
+              className={`border-2 border-rose-500 shadow-md`}
               {...register("first_name", {
                 required: true,
               })}
@@ -70,9 +71,7 @@ const ChPWD = () => {
             <label htmlFor="last_name">নামের শেষ অংশ</label>
             <input
               type="text"
-              className={`${
-                errors.last_name && "border-red-500"
-              } rounded-full !bg-zinc-100 border-none shadow-md`}
+              className={`border-2 border-rose-500 shadow-md`}
               {...register("last_name", {
                 required: true,
               })}
@@ -84,9 +83,7 @@ const ChPWD = () => {
           <label htmlFor="phone">মোবাইল নাম্বার</label>
           <input
             type="text"
-            className={`${
-              errors.phone && "border-red-500"
-            } rounded-full !bg-zinc-100 border-none shadow-md`}
+            className={`border-2 border-rose-500 shadow-md`}
             {...register("phone", {
               required: true,
             })}
@@ -98,7 +95,7 @@ const ChPWD = () => {
           <input
             type="email"
             disabled
-            className={`!border-0 rounded-full !bg-zinc-300 border-none shadow-md`}
+            className={`border-2 border-rose-500 shadow-md bg-zinc-400`}
             value={account?.email}
           />
         </div>
@@ -109,18 +106,18 @@ const ChPWD = () => {
             type="text"
             disabled
             value={account?.username}
-            className={`!border-0 rounded-full !bg-zinc-300 border-none shadow-md`}
+            className={`border-2 border-rose-500 shadow-md bg-zinc-400`}
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
-          <button className="px-7 py-3 bg-green-500 text-white rounded-full w-full shadow-md text-sm">
-            প্রোফাইল হালনাগাদ করুণ
+        <div className="grid grid-cols-1 gap-3">
+          <button className="px-7 py-3 bg-rose-600 text-white w-full text-sm">
+            আপডেট প্রোফাইল
           </button>
 
           <Link href="/user/chpwd">
-            <a className="text-green-500 text-center text-sm flex items-center justify-center underline underline-offset-2 decoration-red-500">
-              পাসওয়ার্ড পরিবর্তন করুণ
+            <a className="border-2 border-rose-600 text-center text-sm flex items-center justify-center py-3">
+              পাসওয়ার্ড পরিবর্তন
             </a>
           </Link>
         </div>

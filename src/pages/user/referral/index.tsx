@@ -14,14 +14,9 @@ const Referral = () => {
   return (
     <DashPage hideFooter>
       <div className="p-5">
-        <p className="mb-2 text-center font-bold">রেফার লিংক</p>
-        <div className="grid grid-cols-3">
-          <input
-            type="text"
-            disabled
-            className="col-span-2 !bg-white !border-0 !px-0"
-            value={ref}
-          />
+        <p className="mb-2 font-bold text-xl">রেফার লিংক</p>
+        <div>
+          <p>{ref}</p>
           <button
             onClick={() => {
               navigator.clipboard.writeText(ref)
@@ -29,7 +24,7 @@ const Referral = () => {
                 <CustomToast success message="রেফার লিংক কপি করা হয়েছে" />
               )
             }}
-            className="px-5 py-3 bg-rose-500 text-white rounded-md"
+            className="px-5 py-3 bg-black text-white block w-max mt-3"
           >
             Copy
           </button>
@@ -37,35 +32,22 @@ const Referral = () => {
       </div>
 
       <div className="p-5">
-        <div className="w-full overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-white overflow-hidden border-2">
-                <th className="text-left px-5 py-3 whitespace-nowrap">Name</th>
-                <th className="text-left px-5 py-3 whitespace-nowrap">
-                  Username
-                </th>
-                <th className="text-left px-5 py-3 whitespace-nowrap">
-                  Mobile
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {data?.map((ref) => (
-                <tr key={ref.id} className="odd:bg-zinc-100">
-                  <td className="text-left px-5 py-3 whitespace-nowrap">
-                    {ref.first_name} {ref.last_name}
-                  </td>
-                  <td className="text-left px-5 py-3 whitespace-nowrap">
-                    {ref.username}
-                  </td>
-                  <td className="text-left px-5 py-3 whitespace-nowrap">
-                    {ref.phone}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div>
+          <div className="flex flex-col gap-5">
+            {data?.map((ref) => (
+              <div key={ref.id} className="bg-zinc-200 p-5 rounded-md">
+                <p className="text-left whitespace-nowrap text-lg font-bold">
+                  {ref.first_name} {ref.last_name}
+                </p>
+                <p className="text-left whitespace-nowrap">
+                  Username: {ref.username}
+                </p>
+                <p className="text-left whitespace-nowrap">
+                  Phone: {ref.phone}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </DashPage>

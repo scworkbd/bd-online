@@ -4,8 +4,12 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        tp: '300px'
-      }
+        tp: "300px",
+      },
+      fontFamily: {
+        anek: ["Anek Bangla", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],

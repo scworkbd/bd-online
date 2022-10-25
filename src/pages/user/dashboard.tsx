@@ -73,7 +73,7 @@ const Dashboard: NextPage = () => {
         </div>
 
         <div className="flex flex-col gap-2 items-center justify-center">
-          <Link href="/user/deposit">
+          <Link href="/user/withdraw">
             <a className="bg-rose-500 p-2 rounded-full">
               <BiTransfer className="text-3xl text-white" />
             </a>
@@ -82,7 +82,7 @@ const Dashboard: NextPage = () => {
         </div>
 
         <div className="flex flex-col gap-2 items-center justify-center">
-          <Link href="/user/deposit">
+          <Link href="/user/referral">
             <a className="bg-rose-500 p-2 rounded-full">
               <BiUserPlus className="text-3xl text-white" />
             </a>
@@ -91,7 +91,7 @@ const Dashboard: NextPage = () => {
         </div>
 
         <div className="flex flex-col gap-2 items-center justify-center">
-          <Link href="/user/deposit">
+          <Link href="/user/profile">
             <a className="bg-rose-500 p-2 rounded-full">
               <BiUser className="text-3xl text-white" />
             </a>
