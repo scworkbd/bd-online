@@ -22,26 +22,31 @@ const Work = () => {
   }, [works, router])
   return (
     <DashPage>
+      <h1 className="text-2xl font-bold text-center text-rose-900 mb-5">
+        ভিডিও
+      </h1>
       {ad && (
-        <YouTube
-          videoId={ad as string}
-          id={ad as string}
-          className="video-responsive"
-          opts={{
-            playerVars: {
-              autoplay: 1,
-              mute: 1,
-            },
-          }}
-          onPlay={() => setState(true)}
-          onPause={() => setState(false)}
-        />
+        <div className="border-2 border-rose-700">
+          <YouTube
+            videoId={ad as string}
+            id={ad as string}
+            className="video-responsive"
+            opts={{
+              playerVars: {
+                autoplay: 1,
+                mute: 1,
+              },
+            }}
+            onPlay={() => setState(true)}
+            onPause={() => setState(false)}
+          />
+        </div>
       )}
 
       {start && <Timer />}
       {!start && (
-        <h1 className="text-2xl font-bold text-center py-10 text-red-500">
-          কাজ শেষ করতে ভিডিও প্লে করুণ
+        <h1 className="text-2xl font-bold text-center py-10 text-rose-900">
+          ভিডিও টি প্লে করে ৫ সেকেন্ড অপেক্ষা করুন
         </h1>
       )}
     </DashPage>

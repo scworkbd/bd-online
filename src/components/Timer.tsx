@@ -10,7 +10,12 @@ const Timer = () => {
 
   const { mutate } = trpc.useMutation(["user.work"], {
     onSuccess: () => {
-      toast.custom(<CustomToast success message="Ads দেখা সফল হয়েছে।" />)
+      toast.custom(
+        <CustomToast
+          success
+          message="একটি এডস দেখার টাকা ব্যালেন্স এ যুক্ত হয়েছে"
+        />
+      )
       router.push("/user/ptc")
     },
     onError: (error) => {
@@ -39,10 +44,11 @@ const Timer = () => {
 
   return (
     <div className="py-10 flex items-center justify-center flex-col gap-2">
-      <p>Please wait</p>
-      <div className="w-20 bg-black text-white rounded-full aspect-square flex items-center justify-center">
-        <h1 className="text-4xl font-black">{remainingTime}</h1>
-      </div>
+      <p>অপেক্ষা করুন</p>
+      <div
+        className="w-full bg-rose-900 h-10 py-3"
+        style={{ width: `${remainingTime * 20}%` }}
+      ></div>
     </div>
   )
 }

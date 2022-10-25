@@ -26,9 +26,7 @@ const Dashboard: NextPage = () => {
 
   useEffect(() => {
     if (works !== undefined && works <= 0) {
-      toast.custom(
-        <CustomToast message="আজকের লিমিট শেষ, কাল আবার চেষ্টা করুণ" />
-      )
+      toast.custom(<CustomToast message="আপনার আজকের এড দেখার লিমিট শেষ।" />)
       router.push("/user/dashboard")
     }
   }, [works, router])
