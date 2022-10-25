@@ -13,13 +13,7 @@ type UserInput = {
 }
 
 const ChPWD = () => {
-  const {
-    reset,
-    register,
-    handleSubmit,
-    getValues,
-    formState: { errors },
-  } = useForm<UserInput>()
+  const { reset, register, handleSubmit, getValues } = useForm<UserInput>()
 
   const { mutate, isLoading } = trpc.useMutation(["user.updatePassword"], {
     onSuccess: () => {

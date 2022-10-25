@@ -3,7 +3,7 @@ type Props = {
   success?: boolean
 }
 
-const CustomToast = ({ message, success }: Props) => {
+const CustomToast = ({ message }: Props) => {
   return (
     <div
       className="

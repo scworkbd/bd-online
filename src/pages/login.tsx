@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import type { NextPage } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"

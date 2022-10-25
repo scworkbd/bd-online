@@ -1,12 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import type { NextPage } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { trpc } from "../utils/trpc"
 import { useRouter } from "next/router"
-import { BiLoaderAlt } from "react-icons/bi"
 import CustomToast from "../components/CustomToast"
 
 type Credentials = {
@@ -23,7 +21,6 @@ type Credentials = {
 const Login: NextPage = () => {
   const router = useRouter()
   const refUser = router.query.ref
-  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -35,10 +32,8 @@ const Login: NextPage = () => {
   const { mutate } = trpc.useMutation(["user.register"], {
     onError: (error) => {
       toast.custom(<CustomToast message={error.message} />)
-      setLoading(false)
     },
     onSuccess: () => {
-      setLoading(false)
       toast.custom(
         <CustomToast success message="রেজিস্ট্রেশন সফল হয়েছে। লগিন করুণ" />
       )
@@ -47,7 +42,6 @@ const Login: NextPage = () => {
   })
 
   const registerUser = (values: Credentials) => {
-    setLoading(true)
     mutate({
       registerData: {
         ...values,

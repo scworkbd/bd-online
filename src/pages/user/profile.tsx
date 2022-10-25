@@ -22,12 +22,7 @@ type UserInput = Omit<
 const ChPWD = () => {
   const { data: account } = useAccount()
 
-  const {
-    reset,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<UserInput>()
+  const { reset, register, handleSubmit } = useForm<UserInput>()
 
   const { mutate } = trpc.useMutation(["user.updateUser"], {
     onSuccess: () => {

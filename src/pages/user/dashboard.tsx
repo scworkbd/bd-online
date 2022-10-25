@@ -7,29 +7,15 @@ import { useDeposit } from "../../hooks/useDeposits"
 import { useWithdraw } from "../../hooks/useWithdraw"
 import { useAccount } from "../../hooks/useAccount"
 import { useRouter } from "next/router"
-import { useSettings } from "../../hooks/useSettings"
 
 import Balance from "../../components/Balance"
 import DashPage from "../../components/DashPage"
 
-import { HiOutlineCash, HiCash, HiUserGroup, HiUser } from "react-icons/hi"
-import {
-  BiBroadcast,
-  BiBox,
-  BiKey,
-  BiTransfer,
-  BiPlus,
-  BiUserPlus,
-  BiUser,
-} from "react-icons/bi"
-import { AiOutlineWhatsApp } from "react-icons/ai"
-import { FaTelegramPlane } from "react-icons/fa"
-
+import { BiTransfer, BiPlus, BiUserPlus, BiUser } from "react-icons/bi"
 import { trpc } from "../../utils/trpc"
 
 const Dashboard: NextPage = () => {
   const { data: account } = useAccount()
-  const { data: settings } = useSettings()
   const { data: deposits } = useDeposit()
   const { data: withdraws } = useWithdraw()
   const { data: works } = trpc.useQuery(["user.works"])
