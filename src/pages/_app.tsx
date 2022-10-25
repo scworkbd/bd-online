@@ -16,7 +16,7 @@ const MyApp: AppType = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <NextProgress color="red" />
+      <NextProgress color="green" options={{ showSpinner: false }} />
       <SEO />
       <Component {...pageProps} />
       <Toaster position="top-center" />
