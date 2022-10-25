@@ -102,13 +102,22 @@ const Deposit: NextPage = () => {
 
   return (
     <DashPage hideFooter>
-      <h1 className="text-2xl font-bold text-center mt-10 mb-5">
+      <>
         {!settings?.cashout_enabled ? (
-          <span>{settings?.cashout_notice}</span>
+          <>
+            <h1 className="text-3xl font-black text-rose-900 mb-5 mt-10 text-center">
+              Notice
+            </h1>
+            <span className="w-full px-10 py-5 border-2 border-rose-600 block">
+              {settings?.cashout_notice}
+            </span>
+          </>
         ) : (
-          "ক্যাশ আউট"
+          <h1 className="text-3xl font-black text-rose-900 mb-5 mt-10 text-center">
+            ক্যাশ আউট
+          </h1>
         )}
-      </h1>
+      </>
       {settings?.cashout_enabled && (
         <div className="grid grid-cols-1 gap-5 mt-10 p-5">
           <div

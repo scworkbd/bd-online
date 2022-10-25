@@ -8,7 +8,7 @@ import { signIn, signOut } from "next-auth/react"
 import Loading from "./Loading"
 import { trpc } from "../utils/trpc"
 import { TbPackage } from "react-icons/tb"
-import { BiHomeSmile } from "react-icons/bi"
+import { BiChevronLeft, BiHomeSmile } from "react-icons/bi"
 import { AiOutlineApi } from "react-icons/ai"
 
 type Props = {
@@ -59,48 +59,30 @@ const DashPage = ({ children }: Props) => {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* <header className="h-14 px-5 fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg flex items-center gap-5 z-20 bg-white shadow-md">
-        <div className="flex items-center justify-center">
-          <Link href="/user/dashboard">
-            <Image src="/logo.png" width={100} height={30} alt="logo" />
-          </Link>
+      {adminData && (
+        <div
+          onClick={() => {
+            localStorage.removeItem("admin")
+            localStorage.removeItem("adminUsername")
+            localStorage.removeItem("adminPassword")
+
+            signIn("credentials", {
+              username: adminData.adminUsername,
+              password: adminData.adminPassword,
+              callbackUrl: "/admin/users",
+            })
+          }}
+          className="px-5 py-3 bg-rose-900 flex items-center justify-center text-white"
+        >
+          <BiChevronLeft className="text-2xl" /> Admin
         </div>
+      )}
 
-        <div className="flex items-center justify-end ml-auto">
-          {adminData ? (
-            <button
-              onClick={() => {
-                localStorage.removeItem("admin")
-                localStorage.removeItem("adminUsername")
-                localStorage.removeItem("adminPassword")
-
-                signIn("credentials", {
-                  username: adminData.adminUsername,
-                  password: adminData.adminPassword,
-                  callbackUrl: "/admin/users",
-                })
-              }}
-              className="px-5 py-2 bg-black text-zinc-200 rounded-md text-xs"
-            >
-              Admin
-            </button>
-          ) : (
-            <a
-              className="bg-green-500 px-4 py-2 rounded-full text-white flex items-center gap-2"
-              href="/app.apk"
-            >
-              <BiDownload className="text-lg" />
-              Download App
-            </a>
-          )}
-        </div>
-      </header> */}
-
-      <div className="pt-10 pb-32">
+      <div className="pt-103pb-32">
         <div>{children}</div>
       </div>
 
-      <div className="px-10 pb-3 flex fixed bottom-0 left-0 w-full">
+      <div className="px-10 pb-3 flex fixed bottom-3 left-0 w-full">
         <div className="rounded-full bg-rose-600 text-white flex items-center justify-evenly gap-2 w-full py-2">
           <Link href="/user/package">
             <a className="flex flex-col gap-1 items-center">
