@@ -16,7 +16,12 @@ const Referral = () => {
       <div className="p-5">
         <p className="mb-2 font-bold text-xl">রেফার লিংক</p>
         <div>
-          <p>{ref}</p>
+          <input
+            type="text"
+            value={ref}
+            className="w-full border-2 border-rose-500"
+          />
+
           <button
             onClick={() => {
               navigator.clipboard.writeText(ref)
@@ -24,7 +29,7 @@ const Referral = () => {
                 <CustomToast success message="রেফার লিংক কপি করা হয়েছে" />
               )
             }}
-            className="px-5 py-3 bg-black text-white block w-max mt-3"
+            className="px-5 py-3 bg-rose-900 w-full text-white block mt-3"
           >
             Copy
           </button>
@@ -32,6 +37,7 @@ const Referral = () => {
       </div>
 
       <div className="p-5">
+        <p className="mb-2 font-bold text-xl text-rose-700">রেফারকৃত ইউজার</p>
         <div>
           <div className="flex flex-col gap-5">
             {data?.map((ref) => (

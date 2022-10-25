@@ -151,7 +151,7 @@ const Dashboard: NextPage = () => {
           </div>
 
           <div className="p-5 bg-gradient-to-r from-rose-700 to-rose-400 rounded-md text-white">
-            <h2 className="font-bold text-xl mb-3">রেরাফেল ইতিহাস</h2>
+            <h2 className="font-bold text-xl mb-3">রেরাফেল ইনকাম</h2>
             <Link href="/user/referral/history">
               <a className="text-xs px-5 py-3 bg-white text-black rounded-full block w-max">
                 এখানে ক্লিক করুন

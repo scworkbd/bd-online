@@ -21,7 +21,7 @@ const CopyNumberForm = ({ method }: { method: "bkash" | "nagad" | "upay" }) => {
   }
 
   return (
-    <div className="grid grid-cols-3 mt-10 gap-3 w-full">
+    <div className="flex flex-col gap-3 mt-10 w-full">
       <input
         ref={inputRef}
         type="text"
@@ -32,13 +32,10 @@ const CopyNumberForm = ({ method }: { method: "bkash" | "nagad" | "upay" }) => {
             ? settings?.nagad
             : settings?.upay
         }
-        className="px-5 py-2 border-none col-span-2 w-full rounded-l-md !rounded-r-none !bg-transparent text-black"
+        className="px-5 py-2 border-2 border-rose-600 w-full  text-black"
         disabled
       />
-      <button
-        onClick={copyNumber}
-        className="px-5 py-2 bg-rose-500 text-white rounded-md"
-      >
+      <button onClick={copyNumber} className="px-5 py-2 bg-rose-900 text-white">
         {text}
       </button>
     </div>

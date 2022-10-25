@@ -67,12 +67,12 @@ const DepositForm = ({ method }: Props) => {
             type="text"
             placeholder="টাকার পরিমান"
             required
-            className="text-center shadow-md rounded-full border-none !bg-zinc-100"
+            className="text-center shadow-md border-2 border-rose-600"
             {...register("amount", { required: true })}
           />
           <input
             type="text"
-            className="text-center shadow-md rounded-full border-none !bg-zinc-100"
+            className="text-center shadow-md border-2 border-rose-600"
             placeholder="ট্রানজেকশন আইডি"
             {...register("tnx_id", { required: true })}
           />
@@ -80,7 +80,7 @@ const DepositForm = ({ method }: Props) => {
           <div>
             <button
               type="submit"
-              className="px-7 py-3 bg-green-500 w-full text-white flex items-center justify-center gap-2 rounded-full"
+              className="px-7 py-3 bg-rose-900 w-full text-white flex items-center justify-center gap-2 "
             >
               {isLoading && <BiLoaderAlt />}
               <span>Submit</span>
