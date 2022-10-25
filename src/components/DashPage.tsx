@@ -78,7 +78,7 @@ const DashPage = ({ children }: Props) => {
         </div>
       )}
 
-      <div className="pt-103pb-32">
+      <div className="pt-10 pb-32">
         <div>{children}</div>
       </div>
 
