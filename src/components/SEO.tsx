@@ -3,7 +3,7 @@ import React from "react"
 
 const SEO = () => {
   const _title = `Sweet Work`
-  const _description = "Sweet work. Smart Work"
+  const _description = "Sweet work, Smart Work"
   const _keywords = "Sweet Work"
   const _author = "Sweet Work"
 

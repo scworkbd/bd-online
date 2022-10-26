@@ -12,14 +12,20 @@ import Balance from "../../components/Balance"
 import DashPage from "../../components/DashPage"
 
 import { BiTransfer, BiPlus, BiUserPlus, BiUser } from "react-icons/bi"
+import { BsWhatsapp } from "react-icons/bs"
+import { FaTelegramPlane } from "react-icons/fa"
+
 import { trpc } from "../../utils/trpc"
 import CustomToast from "../../components/CustomToast"
+
 import toast from "react-hot-toast"
+import { useSettings } from "../../hooks/useSettings"
 
 const Dashboard: NextPage = () => {
   const { data: account } = useAccount()
   const { data: deposits } = useDeposit()
   const { data: withdraws } = useWithdraw()
+  const { data: settings } = useSettings()
   const { data: works } = trpc.useQuery(["user.works"])
   const { data: pack } = trpc.useQuery([
     "admin.packageById",
@@ -49,6 +55,19 @@ const Dashboard: NextPage = () => {
 
   return (
     <DashPage>
+      <div className="fixed top-5 right-5 flex flex-col gap-2">
+        <div className="p-3 bg-rose-900 text-white rounded-full">
+          <Link href={`https://wa.me/${settings?.whatsapp_number}`}>
+            <BsWhatsapp className="text-lg" />
+          </Link>
+        </div>
+
+        <div className="p-3 bg-rose-900 text-white rounded-full">
+          <Link href={settings?.telegram_link as string}>
+            <FaTelegramPlane className="text-lg" />
+          </Link>
+        </div>
+      </div>
       <Balance />
       <div className="grid grid-cols-4 gap-3 p-5">
         <div className="flex flex-col gap-2 items-center justify-center">
