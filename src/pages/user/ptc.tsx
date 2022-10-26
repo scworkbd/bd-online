@@ -25,11 +25,19 @@ const Dashboard: NextPage = () => {
   }
 
   useEffect(() => {
-    if (works !== undefined && works <= 0) {
+    if (!account || works === undefined) return
+
+    if (!account.current_pack) {
+      toast.custom(<CustomToast message="প্যাকেজ কিনে কাজ শুরু করুণ।" />)
+      router.push("/user/dashboard")
+      return
+    }
+
+    if (works <= 0) {
       toast.custom(<CustomToast message="আপনার আজকের এড দেখার লিমিট শেষ।" />)
       router.push("/user/dashboard")
     }
-  }, [works, router])
+  }, [works, router, account])
   return (
     <DashPage>
       <div className="overflow-y-auto">

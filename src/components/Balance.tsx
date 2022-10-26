@@ -3,7 +3,7 @@ import Link from "next/link"
 import { trpc } from "../utils/trpc"
 
 import { useSession } from "next-auth/react"
-import { RiMoneyDollarCircleLine } from "react-icons/ri"
+import { TbCurrencyTaka } from "react-icons/tb"
 import { BiChevronRight } from "react-icons/bi"
 
 const Balance = () => {
@@ -20,7 +20,7 @@ const Balance = () => {
       <div className="py-10">
         <div className="flex flex-col justify-center items-center">
           <h1 className="text-2xl font-bold text-center flex items-center justify-center gap-1">
-            <RiMoneyDollarCircleLine className="text-4xl" />
+            <TbCurrencyTaka className="text-2xl" />
             {user?.balance.toFixed(2)}
           </h1>
 

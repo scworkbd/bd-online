@@ -13,6 +13,8 @@ import DashPage from "../../components/DashPage"
 
 import { BiTransfer, BiPlus, BiUserPlus, BiUser } from "react-icons/bi"
 import { trpc } from "../../utils/trpc"
+import CustomToast from "../../components/CustomToast"
+import toast from "react-hot-toast"
 
 const Dashboard: NextPage = () => {
   const { data: account } = useAccount()
@@ -109,8 +111,21 @@ const Dashboard: NextPage = () => {
           </div>
 
           <div
-            className="p-5 bg-gradient-to-r from-rose-700 to-rose-400 rounded-md text-white"
-            onClick={() => router.push("/user/ptc")}
+            className="p-5 bg-gradient-to-r from-rose-700 to-rose-400 rounded-md text-white relative"
+            onClick={() => {
+              if (!account || works === undefined) return
+              if (!account.current_pack) {
+                return toast.custom(
+                  <CustomToast message="প্যাকেজ কিনে কাজ শুরু করুণ।" />
+                )
+              }
+
+              if (works <= 0) {
+                return toast.custom(
+                  <CustomToast message="আপনার আজকের এড দেখার লিমিট শেষ।" />
+                )
+              }
+            }}
           >
             <h2 className="font-bold text-xl mb-3">কাজ বাকি</h2>
             <p className="font-bold text-xs">
@@ -118,6 +133,14 @@ const Dashboard: NextPage = () => {
                 ? `${works || 0}/${pack.daily_limit}`
                 : "প্যাকেজ কিনে কাজ শুরু করুণ"}
             </p>
+
+            {pack && works ? (
+              <Link href="/user/ptc">
+                <a className="text-xs px-5 py-3 bg-white text-black block w-max absolute top-4 right-5">
+                  ক্লিক করুণ
+                </a>
+              </Link>
+            ) : null}
           </div>
 
           <div

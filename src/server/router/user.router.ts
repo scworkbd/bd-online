@@ -526,3 +526,15 @@ export const userRouter = createRouter()
       }
     },
   })
+  .query("myorks", {
+    async resolve({ ctx }) {
+      return await ctx.prisma.work.findMany({
+        where: {
+          userId: ctx.session?.user?.id as string
+        },
+        orderBy: {
+          date: "desc"
+        }
+      })
+    }
+  })
