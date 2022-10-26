@@ -69,11 +69,11 @@ const Dashboard: NextPage = () => {
         </div>
       </div>
       <Balance />
-      <div className="grid grid-cols-4 gap-3 p-5">
+      <div className="grid grid-cols-3 gap-3 p-5">
         <div className="flex flex-col gap-2 items-center justify-center">
           <Link href="/user/deposit">
-            <a className="bg-rose-500 p-2 rounded-full">
-              <BiPlus className="text-3xl text-white" />
+            <a className="bg-rose-500 p-3 rounded-full">
+              <BiPlus className="text-4xl text-white" />
             </a>
           </Link>
           <span className="text-[10px]">ডিপোজিট</span>
@@ -81,8 +81,8 @@ const Dashboard: NextPage = () => {
 
         <div className="flex flex-col gap-2 items-center justify-center">
           <Link href="/user/withdraw">
-            <a className="bg-rose-500 p-2 rounded-full">
-              <BiTransfer className="text-3xl text-white" />
+            <a className="bg-rose-500 p-3 rounded-full">
+              <BiTransfer className="text-4xl text-white" />
             </a>
           </Link>
           <span className="text-[10px]">ক্যাশআউট</span>
@@ -90,20 +90,11 @@ const Dashboard: NextPage = () => {
 
         <div className="flex flex-col gap-2 items-center justify-center">
           <Link href="/user/referral">
-            <a className="bg-rose-500 p-2 rounded-full">
-              <BiUserPlus className="text-3xl text-white" />
+            <a className="bg-rose-500 p-3 rounded-full">
+              <BiUserPlus className="text-4xl text-white" />
             </a>
           </Link>
           <span className="text-[10px]">রেফার</span>
-        </div>
-
-        <div className="flex flex-col gap-2 items-center justify-center">
-          <Link href="/user/profile">
-            <a className="bg-rose-500 p-2 rounded-full">
-              <BiUser className="text-3xl text-white" />
-            </a>
-          </Link>
-          <span className="text-[10px]">প্রোফাইল</span>
         </div>
       </div>
 
@@ -188,8 +179,8 @@ const Dashboard: NextPage = () => {
           </div>
 
           <div className="p-5 bg-gradient-to-r from-rose-700 to-rose-400 rounded-md text-white">
-            <h2 className="font-bold text-xl mb-3">পাসওয়ার্ড পরিবর্তন</h2>
-            <Link href="/user/chpwd">
+            <h2 className="font-bold text-xl mb-3">সেটিংস</h2>
+            <Link href="/user/profile">
               <a className="text-xs px-5 py-3 bg-white text-black rounded-full block w-max">
                 এখানে ক্লিক করুন
               </a>
