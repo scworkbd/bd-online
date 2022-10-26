@@ -2,10 +2,10 @@ import Head from "next/head"
 import React from "react"
 
 const SEO = () => {
-  const _title = `BD Online`
-  const _description = "বিডি অনলাইনে একাউন্ট খুলে ইনকাম শুরু করুণ"
-  const _keywords = "BD Online"
-  const _author = "BD Online"
+  const _title = `Sweet Work`
+  const _description = "Sweet work. Smart Work"
+  const _keywords = "Sweet Work"
+  const _author = "Sweet Work"
 
   return (
     <Head>
