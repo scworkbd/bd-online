@@ -55,7 +55,7 @@ const Dashboard: NextPage = () => {
 
   return (
     <DashPage>
-      <div className="fixed top-5 right-5 flex flex-col gap-2">
+      <div className="fixed bottom-20 right-5 flex flex-col gap-2 z-50">
         <div className="p-3 bg-rose-900 text-white rounded-full">
           <Link href={`https://wa.me/${settings?.whatsapp_number}`}>
             <BsWhatsapp className="text-lg" />

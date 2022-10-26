@@ -82,7 +82,7 @@ const DashPage = ({ children }: Props) => {
         <div>{children}</div>
       </div>
 
-      <div className="px-10 pb-3 flex fixed bottom-3 left-0 w-full">
+      <div className="px-10 pb-3 flex fixed bottom-2 left-0 w-full">
         <div className="rounded-full bg-rose-600 text-white flex items-center justify-evenly gap-2 w-full py-2">
           <Link href="/user/package">
             <a className="flex flex-col gap-1 items-center">
