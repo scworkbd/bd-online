@@ -11,7 +11,7 @@ const History = () => {
     { packId: account?.current_pack as string },
   ])
 
-  const { data: works, isLoading } = trpc.useQuery(["user.myorks"])
+  const { data: works } = trpc.useQuery(["user.myorks"])
 
   return (
     <DashPage hideFooter>
@@ -19,7 +19,7 @@ const History = () => {
         <h1 className="text-2xl font-bold mb-5 text-center">কাজের ইতিহাস</h1>
         <div className="p-5 flex flex-col gap-3">
           {works?.map((work) => (
-            <div className="p-5 rounded-md bg-zinc-200">
+            <div key={work.id} className="p-5 rounded-md bg-zinc-200">
               <div className="flex items-center justify-between">
                 <h1 className="text-lg font-bold">ভিডিও</h1>
                 <h1 className="text-3xl font-bold text-rose-500">
