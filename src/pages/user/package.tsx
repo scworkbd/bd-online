@@ -71,6 +71,7 @@ const Package = () => {
 
             <ul className="text-center mt-10 text-white text-xl">
               <li>Daily Ads: {pack.daily_limit}</li>
+              <li>Daily Income: {pack.daily_limit * pack.per_click}</li>
               <li>Per Click: {pack.per_click} tk</li>
               <li>
                 Refer Bonus:{" "}
