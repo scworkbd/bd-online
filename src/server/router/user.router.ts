@@ -177,7 +177,9 @@ export const userRouter = createRouter()
           userId: ctx.session?.user?.id as string,
           method: "referral",
         },
-        
+        orderBy: {
+          date: "desc"
+        }
       })
 
       return deposits

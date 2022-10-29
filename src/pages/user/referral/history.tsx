@@ -11,7 +11,7 @@ const History = () => {
       <div className="p-5">
         <h1 className="text-2xl font-bold mb-5 text-center">রেফারেল ইনকাম</h1>
         <div className="w-full overflow-y-auto">
-          <div>
+          <div className="flex flex-col gap-3">
             {deposits?.map((withdraw) => (
               <div key={withdraw.id} className="bg-zinc-200 p-5 rounded-md">
                 <div className="text-left text-xl font-bold">
