@@ -63,13 +63,12 @@ export const userRouter = createRouter()
     },
   })
   .query("details", {
-    input: z.object({
-      username: z.string(),
-    }),
-    async resolve({ ctx, input }) {
+    async resolve({ ctx }) {
+      if (!ctx.session?.user) return null
+
       const user = await ctx.prisma.user.findUnique({
         where: {
-          username: input.username,
+          username: ctx.session.user.username,
         },
       })
 
@@ -99,7 +98,7 @@ export const userRouter = createRouter()
 
       const u = await ctx.prisma.user.findUnique({
         where: {
-          username: input.username,
+          username: ctx.session.user.username,
         },
       })
 

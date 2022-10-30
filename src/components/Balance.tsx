@@ -1,19 +1,11 @@
 import React from "react"
 import Link from "next/link"
-import { trpc } from "../utils/trpc"
-
-import { useSession } from "next-auth/react"
 import { TbCurrencyTaka } from "react-icons/tb"
-import { BiChevronDown, BiChevronRight, BiDownload } from "react-icons/bi"
+import { BiChevronRight, BiDownload } from "react-icons/bi"
+import { useAccount } from "../hooks/useAccount"
 
 const Balance = () => {
-  const { data: session } = useSession()
-  const { data: user } = trpc.useQuery([
-    "user.details",
-    {
-      username: session?.user?.username as string,
-    },
-  ])
+  const { data: user } = useAccount()
 
   return (
     <div>

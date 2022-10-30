@@ -6,10 +6,10 @@ import { useRouter } from "next/router"
 import { signIn, signOut } from "next-auth/react"
 
 import Loading from "./Loading"
-import { trpc } from "../utils/trpc"
 import { TbPackage } from "react-icons/tb"
 import { BiChevronLeft, BiHomeSmile } from "react-icons/bi"
 import { AiOutlineApi } from "react-icons/ai"
+import { useAccount } from "../hooks/useAccount"
 
 type Props = {
   children?: React.ReactNode | React.ReactNode[]
@@ -24,10 +24,7 @@ const DashPage = ({ children }: Props) => {
     adminPassword: string
   } | null>(null)
 
-  const { data: profile, isLoading } = trpc.useQuery([
-    "user.details",
-    { username: session?.user?.username as string },
-  ])
+  const { data: profile, isLoading } = useAccount()
 
   useEffect(() => {
     const adata = localStorage.getItem("admin")
