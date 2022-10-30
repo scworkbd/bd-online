@@ -29,7 +29,7 @@ const Dashboard: NextPage = () => {
   const { data: works } = trpc.useQuery(["user.works"])
   const { data: pack } = trpc.useQuery([
     "admin.packageById",
-    { packId: account?.current_pack as string },
+    { packId: `${account?.current_pack}` },
   ])
   const router = useRouter()
 

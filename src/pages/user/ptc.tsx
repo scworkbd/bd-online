@@ -14,7 +14,7 @@ const Dashboard: NextPage = () => {
   const { data: ads } = trpc.useQuery(["admin.ads"])
   const { data: pack } = trpc.useQuery([
     "admin.packageById",
-    { packId: account?.current_pack as string },
+    { packId: `${account?.current_pack}` },
   ])
 
   const showAds = () => {
