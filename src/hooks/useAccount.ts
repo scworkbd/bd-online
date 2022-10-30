@@ -6,7 +6,7 @@ export const useAccount = () => {
   const { data, isLoading, refetch } = trpc.useQuery([
     "user.details",
     {
-      username: session?.user?.username as string,
+      username: `${session?.user?.username}`,
     },
   ])
 

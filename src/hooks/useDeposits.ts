@@ -3,12 +3,7 @@ import { trpc } from "../utils/trpc"
 
 export const useDeposit = () => {
   const { data: session, status } = useSession()
-  const { data, isLoading } = trpc.useQuery([
-    "user.depositsByUser",
-    {
-      userId: session?.user?.id as string,
-    },
-  ])
+  const { data, isLoading } = trpc.useQuery(["user.depositsByUser"])
 
   if (status === "loading") {
     return { data, isLoading: true }

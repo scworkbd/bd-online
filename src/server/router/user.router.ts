@@ -154,13 +154,10 @@ export const userRouter = createRouter()
     },
   })
   .query("depositsByUser", {
-    input: z.object({
-      userId: z.string(),
-    }),
-    async resolve({ ctx, input }) {
+    async resolve({ ctx }) {
       const deposits = await ctx.prisma.deposit.findMany({
         where: {
-          userId: input.userId,
+          userId: ctx.session?.user?.id,
           method: {
             not: "referral",
           },
@@ -186,17 +183,19 @@ export const userRouter = createRouter()
     },
   })
   .query("withdrawByUser", {
-    input: z.object({
-      userId: z.string(),
-    }),
-    async resolve({ ctx, input }) {
-      const deposits = await ctx.prisma.withdraw.findMany({
-        where: {
-          userId: input.userId,
-        },
-      })
+    async resolve({ ctx }) {
+      if (ctx.session?.user) {
 
-      return deposits
+        const deposits = await ctx.prisma.withdraw.findMany({
+          where: {
+            userId: ctx.session.user.id,
+          },
+        })
+  
+        return deposits
+      } else {
+        return []
+      }
     },
   })
   .mutation("withdraw", {
