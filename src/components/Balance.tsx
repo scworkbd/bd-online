@@ -24,12 +24,13 @@ const Balance = () => {
               </a>
             </Link>
 
-            <Link href="/sweetwork.apk">
-              <a className="border-[1px] border-rose-900 rounded-full px-1 py-1 text-xs flex items-center gap-2 pl-3 mt-3">
-                App ডাউনলোড{" "}
-                <BiDownload className="text-lg bg-black/5 rounded-full animate-bounce -mb-1" />
-              </a>
-            </Link>
+            <a
+              href="/sweetwork.apk"
+              className="border-[1px] border-rose-900 rounded-full px-1 py-1 text-xs flex items-center gap-2 pl-3 mt-3"
+            >
+              App ডাউনলোড{" "}
+              <BiDownload className="text-lg bg-black/5 rounded-full animate-bounce -mb-1" />
+            </a>
           </div>
         </div>
       </div>
